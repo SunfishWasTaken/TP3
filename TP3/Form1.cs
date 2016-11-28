@@ -28,6 +28,7 @@ namespace TP3
       ExecuterTestsUnitaires();
       InitialiserSurfaceDeJeu(20,10);
       InitialiserTableauDeJeu();
+      DeplacementCarré();
     }
 
     private void InitialiserSurfaceDeJeu(int nbLignes, int nbCols)
@@ -67,10 +68,13 @@ namespace TP3
 
 
     #region Code à développer 
-    enum TypeBloc { None, Gelé, Carré }
+    enum TypeBloc { None, Gelé, Carré, Ligne, T, L, J, S, Z}
     int nbColonnesJeu = 10;
     int nbLignesJeu = 20;
     TypeBloc[,] tableauDeJeu = null;
+    int[] blocActifY = new int[4] { 3, 4, 5, 6 };
+    int[] blocActifX = new int[4] { 0, 1, 2, 3 };
+    enum Deplacement { LEFT, RIGHT, DOWN, NOMOVE}
 
     void InitialiserTableauDeJeu()
     {
@@ -94,10 +98,39 @@ namespace TP3
             toutesImagesVisuelles[i, j].BackColor = Color.Magenta;
           }
         }
-       
       }
-      
     }
+    Deplacement SaisirCoupJoueur()
+    {
+      ConsoleKeyInfo coup = Console.ReadKey();
+      if(coup.Key == ConsoleKey.LeftArrow)
+      {
+        return Deplacement.LEFT;
+      }
+      if (coup.Key == ConsoleKey.RightArrow)
+      {
+        return Deplacement.RIGHT;
+      }
+      if (coup.Key == ConsoleKey.DownArrow)
+      {
+        return Deplacement.DOWN;
+      }
+      else
+      {
+        return Deplacement.NOMOVE;
+      }
+    }
+    void DeplacementCarré()
+    {
+      for (int i = 0; i < 4; i++)
+      {
+        for (int j = 3; j < 7; j++)
+        {
+          toutesImagesVisuelles[i, j].BackColor = Color.White;
+        }
+      }
+    }
+
     /// <summary>
     /// Faites ici les appels requis pour vos tests unitaires.
     /// </summary>
@@ -118,14 +151,20 @@ namespace TP3
       
       // Clean-up
     }
+<<<<<<< HEAD
+
+=======
+>>>>>>> 35ede340758e77bf47d514d8d678846a1640a837
 
 
-    #endregion
-
+<<<<<<< HEAD
     private void tableauJeu_Paint(object sender, PaintEventArgs e)
     {
 
     }
+=======
+    #endregion
+>>>>>>> 35ede340758e77bf47d514d8d678846a1640a837
   }
 
 
