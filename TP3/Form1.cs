@@ -118,10 +118,14 @@ namespace TP3
       
       // Clean-up
     }
-   
+
 
     #endregion
 
+    private void tableauJeu_Paint(object sender, PaintEventArgs e)
+    {
+
+    }
   }
 
 
