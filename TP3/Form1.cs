@@ -4,9 +4,9 @@ using System.Windows.Forms;
 
 namespace TP3
 {
-  public partial class Form1 : Form
+  public partial class tetris : Form
   {
-    public Form1( )
+    public tetris( )
     {
       InitializeComponent( );
     }
@@ -27,6 +27,7 @@ namespace TP3
       // Ne pas oublier de mettre en place les valeurs nécessaires à une partie.
       ExecuterTestsUnitaires();
       InitialiserSurfaceDeJeu(20,10);
+      InitialiserTableauDeJeu();
     }
 
     private void InitialiserSurfaceDeJeu(int nbLignes, int nbCols)
@@ -65,7 +66,38 @@ namespace TP3
 
 
 
-    #region Code à développer
+    #region Code à développer 
+    enum TypeBloc { None, Gelé, Carré }
+    int nbColonnesJeu = 10;
+    int nbLignesJeu = 20;
+    TypeBloc[,] tableauDeJeu = null;
+
+    void InitialiserTableauDeJeu()
+    {
+      tableauDeJeu = new TypeBloc[nbLignesJeu, nbColonnesJeu];
+      for (int i = 0; i < nbLignesJeu; i++)
+      {
+        for (int j = 0; j < nbColonnesJeu; j++)
+        {
+          tableauDeJeu[i, j] = TypeBloc.None;
+        }
+      }
+      
+
+      for (int i = 0; i < 2; i++)
+      {
+        for (int j = 4; j < 6; j++)
+        {
+          tableauDeJeu[i, j] = TypeBloc.Carré;
+          if (tableauDeJeu[i, j] == TypeBloc.Carré)
+          {
+            toutesImagesVisuelles[i, j].BackColor = Color.Magenta;
+          }
+        }
+       
+      }
+      
+    }
     /// <summary>
     /// Faites ici les appels requis pour vos tests unitaires.
     /// </summary>
@@ -86,22 +118,8 @@ namespace TP3
       
       // Clean-up
     }
-    enum TypeBloc { None, Gelé, Carré }
-    int nbColonnesJeu = 10;
-    int nbLignesJeu = 20;
-    TypeBloc[,] tableauDeJeu = null;
-    void InitialiserTableauDeJeu()
-    {
-      tableauDeJeu = new TypeBloc[nbLignesJeu, nbColonnesJeu];
-      for (int i = 0; i < nbLignesJeu; i++)
-      {
-        for (int j = 0; j < nbColonnesJeu; j++)
-        {
-          tableauDeJeu[i, j] = TypeBloc.None;
-          tableauDeJeu[0, 4] = TypeBloc.Carré;
-        }
-      }
-    }
+   
+
     #endregion
 
   }
