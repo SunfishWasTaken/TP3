@@ -154,9 +154,20 @@ namespace TP3
       
       // Clean-up
     }
+<<<<<<< HEAD
+
+=======
+>>>>>>> 35ede340758e77bf47d514d8d678846a1640a837
 
 
+<<<<<<< HEAD
+    private void tableauJeu_Paint(object sender, PaintEventArgs e)
+    {
+
+    }
+=======
     #endregion
+>>>>>>> 35ede340758e77bf47d514d8d678846a1640a837
   }
 
 
