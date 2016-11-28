@@ -134,6 +134,19 @@ namespace TP3
         toutesImagesVisuelles[1, pointDepartX - 2].BackColor = Color.Black;
       }
     }
+    void DeplacerCarreBas()
+    {
+      if (pointDepartY < nbLignesJeu - 1)
+      {
+        pointDepartY = pointDepartY + 1;
+        toutesImagesVisuelles[pointDepartY, pointDepartX].BackColor = Color.Magenta;
+        toutesImagesVisuelles[pointDepartY + 1, pointDepartX].BackColor = Color.Magenta;
+        toutesImagesVisuelles[pointDepartY, pointDepartX].BackColor = Color.Magenta;
+        toutesImagesVisuelles[pointDepartY + 1, pointDepartX].BackColor = Color.Magenta;
+        toutesImagesVisuelles[pointDepartY + 2, pointDepartX].BackColor = Color.Black;
+        toutesImagesVisuelles[pointDepartY, pointDepartX].BackColor = Color.Black;
+      }
+    }
     /// <summary>
     /// Faites ici les appels requis pour vos tests unitaires.
     /// </summary>
@@ -172,7 +185,7 @@ namespace TP3
       }
       else if (e.KeyChar == 's')
       {
-        
+        DeplacerCarreBas();
       }
     }
   }
