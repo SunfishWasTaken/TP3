@@ -27,9 +27,9 @@ namespace TP3
       // Ne pas oublier de mettre en place les valeurs nécessaires à une partie.
       ExecuterTestsUnitaires();
       InitialiserSurfaceDeJeu(20,10);
-      DeplacementCarré();
       InitialiserTableauDeJeu();
-      
+      InitialiserCarreDeMouvement();
+      AfficherCarre();
     }
 
     private void InitialiserSurfaceDeJeu(int nbLignes, int nbCols)
@@ -88,7 +88,9 @@ namespace TP3
           tableauDeJeu[i, j] = TypeBloc.None;
         }
       }
-
+    }
+    void AfficherCarre()
+    {
       for (int i = 0; i < 2; i++)
       {
         for (int j = 4; j < 6; j++)
@@ -121,7 +123,7 @@ namespace TP3
         return Deplacement.NOMOVE;
       }
     }
-    void DeplacementCarré()
+    void InitialiserCarreDeMouvement()
     {
       for (int i = 0; i < 4; i++)
       {
