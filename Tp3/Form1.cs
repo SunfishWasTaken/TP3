@@ -168,7 +168,7 @@ namespace TP3
       }
       else if (e.KeyChar == 'd')
       {
-        
+        DeplacerCarreDroite();
       }
       else if (e.KeyChar == 's')
       {
