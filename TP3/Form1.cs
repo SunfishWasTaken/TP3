@@ -27,8 +27,9 @@ namespace TP3
       // Ne pas oublier de mettre en place les valeurs nécessaires à une partie.
       ExecuterTestsUnitaires();
       InitialiserSurfaceDeJeu(20,10);
-      InitialiserTableauDeJeu();
       DeplacementCarré();
+      InitialiserTableauDeJeu();
+      
     }
 
     private void InitialiserSurfaceDeJeu(int nbLignes, int nbCols)
