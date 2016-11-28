@@ -86,7 +86,22 @@ namespace TP3
       
       // Clean-up
     }
-
+    enum TypeBloc { None, Gelé, Carré }
+    int nbColonnesJeu = 10;
+    int nbLignesJeu = 20;
+    TypeBloc[,] tableauDeJeu = null;
+    void InitialiserTableauDeJeu()
+    {
+      tableauDeJeu = new TypeBloc[nbLignesJeu, nbColonnesJeu];
+      for (int i = 0; i < nbLignesJeu; i++)
+      {
+        for (int j = 0; j < nbColonnesJeu; j++)
+        {
+          tableauDeJeu[i, j] = TypeBloc.None;
+          tableauDeJeu[0, 4] = TypeBloc.Carré;
+        }
+      }
+    }
     #endregion
 
   }
