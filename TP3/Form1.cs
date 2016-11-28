@@ -75,6 +75,7 @@ namespace TP3
     void InitialiserTableauDeJeu()
     {
       tableauDeJeu = new TypeBloc[nbLignesJeu, nbColonnesJeu];
+
       for (int i = 0; i < nbLignesJeu; i++)
       {
         for (int j = 0; j < nbColonnesJeu; j++)
@@ -82,7 +83,6 @@ namespace TP3
           tableauDeJeu[i, j] = TypeBloc.None;
         }
       }
-      
 
       for (int i = 0; i < 2; i++)
       {
