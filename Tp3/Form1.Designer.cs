@@ -29,6 +29,10 @@
     private void InitializeComponent( )
     {
       this.tableauJeu = new System.Windows.Forms.TableLayoutPanel();
+      this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+      this.paramètreDeConfigurationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.modifierParamètreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.menuStrip1.SuspendLayout();
       this.SuspendLayout();
       // 
       // tableauJeu
@@ -53,7 +57,7 @@
       this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
       this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
       this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-      this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+      this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 41F));
       this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 27F));
       this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 27F));
       this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 27F));
@@ -102,25 +106,58 @@
       this.tableauJeu.TabIndex = 1;
       this.tableauJeu.Paint += new System.Windows.Forms.PaintEventHandler(this.tableauJeu_Paint);
       // 
+      // menuStrip1
+      // 
+      this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.paramètreDeConfigurationToolStripMenuItem});
+      this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+      this.menuStrip1.Name = "menuStrip1";
+      this.menuStrip1.Size = new System.Drawing.Size(578, 24);
+      this.menuStrip1.TabIndex = 2;
+      this.menuStrip1.Text = "menuStrip1";
+      // 
+      // paramètreDeConfigurationToolStripMenuItem
+      // 
+      this.paramètreDeConfigurationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.modifierParamètreToolStripMenuItem});
+      this.paramètreDeConfigurationToolStripMenuItem.Name = "paramètreDeConfigurationToolStripMenuItem";
+      this.paramètreDeConfigurationToolStripMenuItem.Size = new System.Drawing.Size(164, 20);
+      this.paramètreDeConfigurationToolStripMenuItem.Text = "paramètre de configuration";
+      // 
+      // modifierParamètreToolStripMenuItem
+      // 
+      this.modifierParamètreToolStripMenuItem.Name = "modifierParamètreToolStripMenuItem";
+      this.modifierParamètreToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+      this.modifierParamètreToolStripMenuItem.Text = "modifier paramètre";
+      this.modifierParamètreToolStripMenuItem.Click += new System.EventHandler(this.modifierParamètreToolStripMenuItem_Click);
+      // 
       // tetris
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(578, 589);
       this.Controls.Add(this.tableauJeu);
+      this.Controls.Add(this.menuStrip1);
       this.KeyPreview = true;
-      this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.MainMenuStrip = this.menuStrip1;
+      this.Margin = new System.Windows.Forms.Padding(4);
       this.Name = "tetris";
       this.Text = "Tetris";
       this.Load += new System.EventHandler(this.frmLoad);
       this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tetris_KeyPress);
+      this.menuStrip1.ResumeLayout(false);
+      this.menuStrip1.PerformLayout();
       this.ResumeLayout(false);
+      this.PerformLayout();
 
     }
 
     #endregion
 
     private System.Windows.Forms.TableLayoutPanel tableauJeu;
+    private System.Windows.Forms.MenuStrip menuStrip1;
+    private System.Windows.Forms.ToolStripMenuItem paramètreDeConfigurationToolStripMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem modifierParamètreToolStripMenuItem;
   }
 }
 

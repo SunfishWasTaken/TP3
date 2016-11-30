@@ -112,13 +112,14 @@ namespace TP3
     {
       if (pointDepartX > 0)
       {
+        toutesImagesVisuelles[pointDepartY, pointDepartX].BackColor = Color.Magenta;
         pointDepartX = pointDepartX - 1;
-        toutesImagesVisuelles[0, pointDepartX].BackColor = Color.Magenta;
-        toutesImagesVisuelles[0, pointDepartX + 1].BackColor = Color.Magenta;
-        toutesImagesVisuelles[1, pointDepartX].BackColor = Color.Magenta;
-        toutesImagesVisuelles[1, pointDepartX + 1].BackColor = Color.Magenta;
-        toutesImagesVisuelles[0, pointDepartX + 2].BackColor = Color.Black;
-        toutesImagesVisuelles[1, pointDepartX + 2].BackColor = Color.Black;
+        toutesImagesVisuelles[pointDepartY, pointDepartX].BackColor = Color.Magenta;
+        toutesImagesVisuelles[pointDepartY, pointDepartX + 1].BackColor = Color.Magenta;
+        toutesImagesVisuelles[pointDepartY+1, pointDepartX].BackColor = Color.Magenta;
+        toutesImagesVisuelles[pointDepartY+1, pointDepartX + 1].BackColor = Color.Magenta;
+        toutesImagesVisuelles[pointDepartY, pointDepartX + 2].BackColor = Color.Black;
+        toutesImagesVisuelles[pointDepartY+1, pointDepartX + 2].BackColor = Color.Black;
       }
     }
     void DeplacerCarreDroite()
@@ -187,6 +188,10 @@ namespace TP3
       {
         DeplacerCarreBas();
       }
+    }
+
+    private void modifierParamètreToolStripMenuItem_Click(object sender, EventArgs e)
+    {
     }
   }
 
