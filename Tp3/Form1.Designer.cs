@@ -137,6 +137,7 @@
       // 
       // descendreBlockAuto
       // 
+      this.descendreBlockAuto.Enabled = true;
       this.descendreBlockAuto.Interval = 1000;
       this.descendreBlockAuto.Tick += new System.EventHandler(this.descendreBlockAuto_Tick);
       // 

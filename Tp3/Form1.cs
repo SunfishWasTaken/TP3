@@ -29,6 +29,12 @@ namespace TP3
       InitialiserSurfaceDeJeu(20, 10);
       InitialiserTableauDeJeu();
       AfficherCarre();
+
+      Timer descendreAuto = new Timer();
+      descendreAuto.Interval = 1000;
+      descendreAuto.Tick += new EventHandler(descendreBlockAuto_Tick);
+      descendreBlockAuto.Start();
+      
     }
 
     private void InitialiserSurfaceDeJeu(int nbLignes, int nbCols)
@@ -202,7 +208,7 @@ namespace TP3
 
     private void descendreBlockAuto_Tick(object sender, EventArgs e)
     {
-      
+      DeplacerCarreBas();
     }
   }
 
