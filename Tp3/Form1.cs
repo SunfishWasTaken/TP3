@@ -126,25 +126,25 @@ namespace TP3
       if (pointDepartX < nbColonnesJeu - 1)
       {
         pointDepartX = pointDepartX + 1;
-        toutesImagesVisuelles[0, pointDepartX].BackColor = Color.Magenta;
-        toutesImagesVisuelles[0, pointDepartX - 1].BackColor = Color.Magenta;
-        toutesImagesVisuelles[1, pointDepartX].BackColor = Color.Magenta;
-        toutesImagesVisuelles[1, pointDepartX - 1].BackColor = Color.Magenta;
-        toutesImagesVisuelles[0, pointDepartX - 2].BackColor = Color.Black;
-        toutesImagesVisuelles[1, pointDepartX - 2].BackColor = Color.Black;
+        toutesImagesVisuelles[pointDepartY, pointDepartX].BackColor = Color.Magenta;
+        toutesImagesVisuelles[pointDepartY, pointDepartX - 1].BackColor = Color.Magenta;
+        toutesImagesVisuelles[pointDepartY+1, pointDepartX].BackColor = Color.Magenta;
+        toutesImagesVisuelles[pointDepartY+1, pointDepartX - 1].BackColor = Color.Magenta;
+        toutesImagesVisuelles[pointDepartY, pointDepartX - 2].BackColor = Color.Black;
+        toutesImagesVisuelles[pointDepartY+1, pointDepartX - 2].BackColor = Color.Black;
       }
     }
     void DeplacerCarreBas()
     {
       if (pointDepartY < nbLignesJeu - 1)
       {
-        pointDepartY = pointDepartY + 1;
+        pointDepartY = pointDepartY+1;
         toutesImagesVisuelles[pointDepartY, pointDepartX].BackColor = Color.Magenta;
+        toutesImagesVisuelles[pointDepartY, pointDepartX+1].BackColor = Color.Magenta;
         toutesImagesVisuelles[pointDepartY + 1, pointDepartX].BackColor = Color.Magenta;
-        toutesImagesVisuelles[pointDepartY, pointDepartX].BackColor = Color.Magenta;
-        toutesImagesVisuelles[pointDepartY + 1, pointDepartX].BackColor = Color.Magenta;
+        toutesImagesVisuelles[pointDepartY + 1, pointDepartX+1].BackColor = Color.Magenta;
         toutesImagesVisuelles[pointDepartY + 2, pointDepartX].BackColor = Color.Black;
-        toutesImagesVisuelles[pointDepartY, pointDepartX].BackColor = Color.Black;
+        toutesImagesVisuelles[pointDepartY+1, pointDepartX-1].BackColor = Color.Black;
       }
     }
     /// <summary>
