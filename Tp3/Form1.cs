@@ -204,6 +204,8 @@ namespace TP3
 
     private void modifierParamètreToolStripMenuItem_Click(object sender, EventArgs e)
     {
+      FrmParametre aide = new FrmParametre();
+      aide.ShowDialog();
     }
 
     private void descendreBlockAuto_Tick(object sender, EventArgs e)
