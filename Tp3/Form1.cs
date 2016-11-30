@@ -112,7 +112,7 @@ namespace TP3
     {
       if (pointDepartX > 0)
       {
-        toutesImagesVisuelles[pointDepartY, pointDepartX].BackColor = Color.Magenta;
+
         pointDepartX = pointDepartX - 1;
         toutesImagesVisuelles[pointDepartY, pointDepartX].BackColor = Color.Magenta;
         toutesImagesVisuelles[pointDepartY, pointDepartX + 1].BackColor = Color.Magenta;
