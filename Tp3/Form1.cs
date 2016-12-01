@@ -129,6 +129,10 @@ namespace TP3
         toutesImagesVisuelles[pointDepartY, pointDepartX + 3].BackColor = Color.Black;
         toutesImagesVisuelles[pointDepartY + 1, pointDepartX + 3].BackColor = Color.Black;
       }
+      else if(pointDepartX==0)
+      {
+        toutesImagesVisuelles[pointDepartY, pointDepartX].BackColor = Color.Magenta;
+      }
     }
     void DeplacerCarreDroite()
     {
