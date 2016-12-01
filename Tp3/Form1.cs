@@ -122,12 +122,12 @@ namespace TP3
         pointDepartX = pointDepartX - 1;
         toutesImagesVisuelles[pointDepartY, pointDepartX].BackColor = Color.Magenta;
         toutesImagesVisuelles[pointDepartY + 1, pointDepartX].BackColor = Color.Magenta;
-        toutesImagesVisuelles[pointDepartY, pointDepartX - 1].BackColor = Color.Magenta;
-        toutesImagesVisuelles[pointDepartY + 1, pointDepartX - 1].BackColor = Color.Magenta;
-        toutesImagesVisuelles[pointDepartY, pointDepartX + 1].BackColor = Color.Black;
-        toutesImagesVisuelles[pointDepartY + 1, pointDepartX + 1].BackColor = Color.Black;
+        toutesImagesVisuelles[pointDepartY, pointDepartX+1].BackColor = Color.Magenta;
+        toutesImagesVisuelles[pointDepartY + 1, pointDepartX+1].BackColor = Color.Magenta;
         toutesImagesVisuelles[pointDepartY, pointDepartX + 2].BackColor = Color.Black;
         toutesImagesVisuelles[pointDepartY + 1, pointDepartX + 2].BackColor = Color.Black;
+        toutesImagesVisuelles[pointDepartY, pointDepartX + 3].BackColor = Color.Black;
+        toutesImagesVisuelles[pointDepartY + 1, pointDepartX + 3].BackColor = Color.Black;
       }
     }
     void DeplacerCarreDroite()
