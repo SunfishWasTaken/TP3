@@ -101,8 +101,7 @@ namespace TP3
     }
     //void AfficherCarre()
     //{
-    //  blocActifY = new int[] { 0, 0, 1, 1 };
-    //  blocActifX = new int[] { 0, 1, 0, 1 };
+     
     //  for (int j = 2; j < 4; j++)
     //  {
     //    tableauDeJeu[blocActifY[1], blocActifX[j]] = TypeBloc.Carré;
@@ -215,8 +214,10 @@ namespace TP3
     }
     #endregion
     void AfficherJeu()
-    { 
-      for(int i=0;i<tableauDeJeu.GetLength(0);i++)
+    {
+      blocActifY = new int[] { 0, 0, 1, 1 };
+      blocActifX = new int[] { 0, 1, 0, 1 };
+      for (int i=0;i<tableauDeJeu.GetLength(0);i++)
       {
         for (int j = 0; j < tableauDeJeu.GetLength(1); j++)
         { 
@@ -240,20 +241,23 @@ namespace TP3
     {
       if(e.KeyChar=='a')
       {
+        AfficherJeu();
         bool Valider = VerifierPeutBouger();
         DeplacerCarreGauche();    
       }
       else if (e.KeyChar == 'd')
       {
+        AfficherJeu();
         bool Valider = VerifierPeutBouger();
         DeplacerCarreDroite();        
       }
       else if (e.KeyChar == 's')
       {
+        AfficherJeu();
         bool Valider = VerifierPeutBouger();
         DeplacerCarreBas();              
       }
-      AfficherJeu();
+     
     }
 
     private void modifierParamètreToolStripMenuItem_Click(object sender, EventArgs e)
@@ -264,15 +268,13 @@ namespace TP3
 
     private void descendreBlockAuto_Tick(object sender, EventArgs e)
     {
-<<<<<<< HEAD
       DeplacerCarreBas();
       AfficherJeu();
-=======
       if(tableauDeJeu[pointDepartY + 2, pointDepartX] == TypeBloc.None)
       {
         DeplacerCarreBas();
       }
->>>>>>> 1a1bef28db9e19e5f63f6becfd75dabbdff8b3e6
+
     }
   }
 
