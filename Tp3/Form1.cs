@@ -199,9 +199,39 @@ namespace TP3
       blocActifNouveauX[2] = -blocActifY[2];
       blocActifNouveauX[3] = -blocActifY[3];
 
-
-
+      for (int i = 0; i < blocActifNouveauY.Length; i++)
+      {
+        for (int j = 0; j < blocActifNouveauX.Length; j++)
+        {
+          tableauDeJeu[blocActifNouveauY[i], blocActifNouveauX[i]] = TypeBloc.Carré;
+        }
+      }
+      
     }
+    bool VerifierSiFinPartie()
+     {
+       bool partieTerminee = false;
+
+       if(tableauDeJeu[pointDepartY,pointDepartX] == TypeBloc.Gelé)
+       {
+         partieTerminee = true;
+       }
+       return partieTerminee;
+     }
+     void AfficherFinPartie()
+     {
+       bool partieTerminee = VerifierSiFinPartie();
+
+       if(partieTerminee == true)
+       {
+         MessageBox.Show("Partie terminée", "La partie est terminée", MessageBoxButtons.OK, MessageBoxIcon.Information);
+       }
+     }
+
+     void RecommencerPartie()
+     {
+      InitialiserSurfaceDeJeu(nbLignesJeu,nbColonnesJeu);
+     }
     /// <summary>
     /// Faites ici les appels requis pour vos tests unitaires.
     /// </summary>
@@ -273,6 +303,7 @@ namespace TP3
       }
       else if(e.KeyChar == 'w')
       {
+        bool valider = VerifierPeutBouger();
         
       }
       AfficherJeu();
@@ -286,7 +317,8 @@ namespace TP3
 
     private void descendreBlockAuto_Tick(object sender, EventArgs e)
     {
-      if(tableauDeJeu[pointDepartY + 2, pointDepartX] == TypeBloc.None)
+      bool valider = VerifierPeutBouger();
+      if(valider == true)
       {
         DeplacerCarreBas();
       }
