@@ -28,7 +28,7 @@ namespace TP3
       ExecuterTestsUnitaires();
       InitialiserSurfaceDeJeu(20, 10);
       InitialiserTableauDeJeu();
-      AfficherCarre();
+      //AfficherCarre();
 
       Timer descendreAuto = new Timer();
       descendreAuto.Interval = 1000;
@@ -83,6 +83,7 @@ namespace TP3
     int pointDepartX = 4;
     int[] blocActifY = new int[4];
     int[] blocActifX = new int[4];
+    bool peutBouger = false;
     Deplacement coup = new Deplacement();
     enum Deplacement { LEFT, RIGHT, DOWN, HORAIRE, ANTIHORAIRE, NOMOVE}
 
@@ -98,101 +99,92 @@ namespace TP3
         }
       }
     }
-    void AfficherCarre()
-    {
-      blocActifY = new int[] { 0, 0, 1, 1 };
-      blocActifX = new int[] { 0, 1, 0, 1 };
-      for (int j = 2; j < 4; j++)
+    //void AfficherCarre()
+    //{
+    //  blocActifY = new int[] { 0, 0, 1, 1 };
+    //  blocActifX = new int[] { 0, 1, 0, 1 };
+    //  for (int j = 2; j < 4; j++)
+    //  {
+    //    tableauDeJeu[blocActifY[1], blocActifX[j]] = TypeBloc.Carré;
+    //    tableauDeJeu[blocActifY[0], blocActifX[j]] = TypeBloc.Carré;
+    //    if (tableauDeJeu[blocActifY[0], blocActifX[j]] == TypeBloc.Carré && tableauDeJeu[blocActifY[1], blocActifX[j]] == TypeBloc.Carré)
+    //    {         
+    //        toutesImagesVisuelles[0, pointDepartX].BackColor = Color.Magenta;
+    //      toutesImagesVisuelles[0, pointDepartX + 1].BackColor = Color.Magenta;
+    //        toutesImagesVisuelles[1, pointDepartX].BackColor = Color.Magenta;
+    //      toutesImagesVisuelles[1, pointDepartX + 1].BackColor = Color.Magenta;   
+    //    }
+    //  }
+    //}
+    bool VerifierPeutBouger()
+    { peutBouger = false;
+      if (coup == Deplacement.LEFT)
       {
-        tableauDeJeu[blocActifY[1], blocActifX[j]] = TypeBloc.Carré;
-        tableauDeJeu[blocActifY[0], blocActifX[j]] = TypeBloc.Carré;
-        if (tableauDeJeu[blocActifY[0], blocActifX[j]] == TypeBloc.Carré && tableauDeJeu[blocActifY[1], blocActifX[j]] == TypeBloc.Carré)
-        {         
-            toutesImagesVisuelles[0, pointDepartX].BackColor = Color.Magenta;
-          toutesImagesVisuelles[0, pointDepartX + 1].BackColor = Color.Magenta;
-            toutesImagesVisuelles[1, pointDepartX].BackColor = Color.Magenta;
-          toutesImagesVisuelles[1, pointDepartX + 1].BackColor = Color.Magenta;   
+        for (int i = 0; i < blocActifX.Length; i++)
+        {
+          if (tableauDeJeu[ pointDepartY, pointDepartX + blocActifX[i]] == TypeBloc.None)
+          { peutBouger = true; }
+          else
+          { peutBouger = false; }
         }
       }
+      else if (coup==Deplacement.RIGHT)
+      {
+      for(int i=0;i<blocActifX.Length;i++)
+        {
+          if (tableauDeJeu[pointDepartY, pointDepartX + blocActifX[i]] == TypeBloc.None)
+          { peutBouger = true; }
+          else
+          { peutBouger = false; }
+        }
+      }
+      else if (coup==Deplacement.DOWN)
+      {
+      for(int i=0;i<blocActifY.Length;i++)
+       {
+          if (tableauDeJeu[pointDepartY+blocActifY[i], pointDepartX + blocActifX[i]] == TypeBloc.None)
+          { peutBouger = true; }
+          else
+          { peutBouger = false; }
+        }
+      }
+      return peutBouger;
     }
     Deplacement DeplacerCarreGauche()
     {
       coup = Deplacement.LEFT;
-      if (pointDepartX > 1)
       {
-        if (coup == Deplacement.LEFT)
+        if (coup == Deplacement.LEFT && peutBouger==true)
         {
-          pointDepartX = pointDepartX - 1;
-          toutesImagesVisuelles[pointDepartY, pointDepartX].BackColor = Color.Magenta;
-          toutesImagesVisuelles[pointDepartY + 1, pointDepartX].BackColor = Color.Magenta;
-          toutesImagesVisuelles[pointDepartY, pointDepartX + 1].BackColor = Color.Magenta;
-          toutesImagesVisuelles[pointDepartY + 1, pointDepartX + 1].BackColor = Color.Magenta;
-          toutesImagesVisuelles[pointDepartY, pointDepartX + 2].BackColor = Color.Black;
-          toutesImagesVisuelles[pointDepartY + 1, pointDepartX + 2].BackColor = Color.Black;
-          toutesImagesVisuelles[pointDepartY, pointDepartX + 3].BackColor = Color.Black;
-          toutesImagesVisuelles[pointDepartY + 1, pointDepartX + 3].BackColor = Color.Black;
+          for (int i = 0; i < blocActifX.Length; i++)
+          {
+            if (tableauDeJeu[pointDepartY + blocActifY[i], pointDepartX - blocActifX[i]] == TypeBloc.None)
+            { toutesImagesVisuelles[pointDepartY + blocActifY[i], pointDepartX - blocActifX[i]].BackColor = Color.Magenta; }
+          }
         }       
        }
-       else if(pointDepartX<=1)
-       {
-        pointDepartX = 1;
-        toutesImagesVisuelles[pointDepartY, pointDepartX-1].BackColor = Color.Magenta;
-        toutesImagesVisuelles[pointDepartY, pointDepartX].BackColor = Color.Magenta;
-        toutesImagesVisuelles[pointDepartY + 1, pointDepartX].BackColor = Color.Magenta;
-        toutesImagesVisuelles[pointDepartY + 1, pointDepartX-1].BackColor = Color.Magenta;
-        toutesImagesVisuelles[pointDepartY, pointDepartX + 1].BackColor = Color.Black;
-        toutesImagesVisuelles[pointDepartY + 1, pointDepartX + 1].BackColor = Color.Black;
-      }
 
       return coup;
     }
     void DeplacerCarreDroite()
-    {
-      if (pointDepartX < nbColonnesJeu - 2)
-      {
-        pointDepartX = pointDepartX + 1;
-        toutesImagesVisuelles[pointDepartY, pointDepartX].BackColor = Color.Magenta;
-        toutesImagesVisuelles[pointDepartY + 1, pointDepartX].BackColor = Color.Magenta;
-        toutesImagesVisuelles[pointDepartY, pointDepartX + 1].BackColor = Color.Magenta;
-        toutesImagesVisuelles[pointDepartY + 1, pointDepartX + 1].BackColor = Color.Magenta;
-        toutesImagesVisuelles[pointDepartY, pointDepartX - 1].BackColor = Color.Black;
-        toutesImagesVisuelles[pointDepartY + 1, pointDepartX - 1].BackColor = Color.Black;
-        toutesImagesVisuelles[pointDepartY, pointDepartX - 2].BackColor = Color.Black;
-        toutesImagesVisuelles[pointDepartY + 1, pointDepartX - 2].BackColor = Color.Black;
-      }
-      else if(pointDepartX>=nbColonnesJeu)
-      {
-        pointDepartX = nbColonnesJeu - 2;
-        toutesImagesVisuelles[pointDepartY, pointDepartX + 1].BackColor = Color.Magenta;
-        toutesImagesVisuelles[pointDepartY, pointDepartX].BackColor = Color.Magenta;
-        toutesImagesVisuelles[pointDepartY + 1, pointDepartX].BackColor = Color.Magenta;
-        toutesImagesVisuelles[pointDepartY + 1, pointDepartX + 1].BackColor = Color.Magenta;
-        toutesImagesVisuelles[pointDepartY, pointDepartX - 1].BackColor = Color.Black;
-        toutesImagesVisuelles[pointDepartY + 1, pointDepartX - 1].BackColor = Color.Black;
+    { coup = Deplacement.RIGHT;
+      if (coup==Deplacement.RIGHT && peutBouger==true)
+      { 
+        for(int i=0;i<blocActifX.Length;i++)
+        {if (tableauDeJeu[pointDepartY + blocActifY[i], pointDepartX + blocActifX[i]] == TypeBloc.None)
+          { toutesImagesVisuelles[pointDepartY + blocActifY[i], pointDepartX + blocActifX[i]].BackColor = Color.Magenta; }
+        }    
       }
     }
     void DeplacerCarreBas()
-    {
-      if (pointDepartY < nbLignesJeu - 1)
+    { coup = Deplacement.DOWN;
+      if (coup==Deplacement.DOWN && peutBouger==true)
       {
-        pointDepartY = pointDepartY+1;
-        toutesImagesVisuelles[pointDepartY, pointDepartX].BackColor = Color.Magenta;
-        toutesImagesVisuelles[pointDepartY, pointDepartX+1].BackColor = Color.Magenta;
-        toutesImagesVisuelles[pointDepartY + 1, pointDepartX].BackColor = Color.Magenta;
-        toutesImagesVisuelles[pointDepartY + 1, pointDepartX+1].BackColor = Color.Magenta;
-        toutesImagesVisuelles[pointDepartY - 1, pointDepartX].BackColor = Color.Black;
-        toutesImagesVisuelles[pointDepartY - 1, pointDepartX + 1].BackColor = Color.Black;
-        toutesImagesVisuelles[pointDepartY, pointDepartX - 1].BackColor = Color.Black;
-        toutesImagesVisuelles[pointDepartY - 1, pointDepartX - 1].BackColor = Color.Black;
-      }
-      else if(pointDepartY<=nbLignesJeu)
-      {
-        descendreBlockAuto.Stop();
-        pointDepartY = nbLignesJeu - 2;
-        toutesImagesVisuelles[pointDepartY + 1, pointDepartX].BackColor = Color.Gray;
-        toutesImagesVisuelles[pointDepartY + 1, pointDepartX+1].BackColor = Color.Gray;
-        toutesImagesVisuelles[pointDepartY, pointDepartX].BackColor = Color.Gray;
-        toutesImagesVisuelles[pointDepartY, pointDepartX + 1].BackColor = Color.Gray;
+        for (int i = 0; i < blocActifY.Length; i++)
+        {
+          if (tableauDeJeu[pointDepartY + blocActifY[i], pointDepartX + blocActifX[i]] == TypeBloc.None)
+          { toutesImagesVisuelles[pointDepartY + blocActifY[i], pointDepartX + blocActifX[i]].BackColor = Color.Magenta; }
+        }
       }
     }
 
@@ -226,28 +218,56 @@ namespace TP3
     }
     private void tableauJeu_Paint(object sender, PaintEventArgs e)
     {
-
+      
     }
     #endregion
+    void AfficherJeu()
+    { 
+      for(int i=0;i<tableauDeJeu.GetLength(0);i++)
+      {
+        for (int j = 0; j < tableauDeJeu.GetLength(1); j++)
+        { 
+          if(tableauDeJeu[i,j] == TypeBloc.Gelé)
+          {
+            toutesImagesVisuelles[i, j].BackColor = Color.Gray;
+          }
+          else
+          {
+            toutesImagesVisuelles[i,j].BackColor = Color.Black;
+          }
+        }
+      }
 
+      for(int i=0;i<4;i++)
+      {
+        toutesImagesVisuelles[pointDepartY+blocActifY[i], pointDepartX+blocActifX[i]].BackColor = Color.Magenta;
+      }
+    }
     private void tetris_KeyPress(object sender, KeyPressEventArgs e)
     {
       if(e.KeyChar=='a')
       {
-        DeplacerCarreGauche();
+        bool Valider = VerifierPeutBouger();
+        DeplacerCarreGauche();    
       }
       else if (e.KeyChar == 'd')
       {
-        DeplacerCarreDroite();
+        bool Valider = VerifierPeutBouger();
+        DeplacerCarreDroite();        
       }
       else if (e.KeyChar == 's')
       {
-        DeplacerCarreBas();
+        bool Valider = VerifierPeutBouger();
+        DeplacerCarreBas();              
       }
+<<<<<<< HEAD
       else if(e.KeyChar == 'w')
       {
         
       }
+=======
+      AfficherJeu();
+>>>>>>> e4fa77d21840490f236f09b30d7b04b855cf8179
     }
 
     private void modifierParamètreToolStripMenuItem_Click(object sender, EventArgs e)
@@ -258,7 +278,19 @@ namespace TP3
 
     private void descendreBlockAuto_Tick(object sender, EventArgs e)
     {
+<<<<<<< HEAD
       DeplacerCarreBas();
+=======
+<<<<<<< HEAD
+      DeplacerCarreBas();
+      AfficherJeu();
+=======
+      if(tableauDeJeu[pointDepartY + 2, pointDepartX] == TypeBloc.None)
+      {
+        DeplacerCarreBas();
+      }
+>>>>>>> 1a1bef28db9e19e5f63f6becfd75dabbdff8b3e6
+>>>>>>> e4fa77d21840490f236f09b30d7b04b855cf8179
     }
   }
 
