@@ -165,8 +165,6 @@ namespace TP3
 
       return coup;
     }
-     
-    
     void DeplacerCarreDroite()
     { coup = Deplacement.RIGHT;
       if (coup==Deplacement.RIGHT && peutBouger==true)
@@ -187,6 +185,15 @@ namespace TP3
           { toutesImagesVisuelles[pointDepartY + blocActifY[i], pointDepartX + blocActifX[i]].BackColor = Color.Magenta; }
         }
       }
+    }
+
+    void EffectuerRotationHoraire()
+    {
+      
+    }
+    void AfficherMessageBox()
+    {
+      
     }
     /// <summary>
     /// Faites ici les appels requis pour vos tests unitaires.
@@ -257,7 +264,18 @@ namespace TP3
         bool Valider = VerifierPeutBouger();
         DeplacerCarreBas();              
       }
+<<<<<<< HEAD
      
+=======
+<<<<<<< HEAD
+      else if(e.KeyChar == 'w')
+      {
+        
+      }
+=======
+      AfficherJeu();
+>>>>>>> e4fa77d21840490f236f09b30d7b04b855cf8179
+>>>>>>> 5a840172364bf03ca172d4dfbb6b5fa1c585b46a
     }
 
     private void modifierParamètreToolStripMenuItem_Click(object sender, EventArgs e)
@@ -269,12 +287,20 @@ namespace TP3
     private void descendreBlockAuto_Tick(object sender, EventArgs e)
     {
       DeplacerCarreBas();
+=======
+<<<<<<< HEAD
+      DeplacerCarreBas();
       AfficherJeu();
       if(tableauDeJeu[pointDepartY + 2, pointDepartX] == TypeBloc.None)
       {
         DeplacerCarreBas();
       }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1a1bef28db9e19e5f63f6becfd75dabbdff8b3e6
+>>>>>>> e4fa77d21840490f236f09b30d7b04b855cf8179
+>>>>>>> 5a840172364bf03ca172d4dfbb6b5fa1c585b46a
     }
   }
 
