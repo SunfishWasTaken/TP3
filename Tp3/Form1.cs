@@ -162,7 +162,7 @@ namespace TP3
         toutesImagesVisuelles[pointDepartY, pointDepartX - 2].BackColor = Color.Black;
         toutesImagesVisuelles[pointDepartY + 1, pointDepartX - 2].BackColor = Color.Black;
       }
-      else if(pointDepartX<=nbColonnesJeu)
+      else if(pointDepartX>=nbColonnesJeu)
       {
         pointDepartX = nbColonnesJeu - 2;
         toutesImagesVisuelles[pointDepartY, pointDepartX + 1].BackColor = Color.Magenta;
@@ -186,6 +186,15 @@ namespace TP3
         toutesImagesVisuelles[pointDepartY - 1, pointDepartX + 1].BackColor = Color.Black;
         toutesImagesVisuelles[pointDepartY, pointDepartX - 1].BackColor = Color.Black;
         toutesImagesVisuelles[pointDepartY - 1, pointDepartX - 1].BackColor = Color.Black;
+      }
+      else if(pointDepartY<=nbLignesJeu)
+      {
+        descendreBlockAuto.Stop();
+        pointDepartY = nbLignesJeu - 2;
+        toutesImagesVisuelles[pointDepartY + 1, pointDepartX].BackColor = Color.Gray;
+        toutesImagesVisuelles[pointDepartY + 1, pointDepartX+1].BackColor = Color.Gray;
+        toutesImagesVisuelles[pointDepartY, pointDepartX].BackColor = Color.Gray;
+        toutesImagesVisuelles[pointDepartY, pointDepartX + 1].BackColor = Color.Gray;
       }
     }
     /// <summary>
