@@ -209,13 +209,20 @@ namespace TP3
       }
     }
 
-    void EffectuerRotationHoraire()
+    void EffectuerRotationHoraire(int[] blocActifNouveauY, int[] blocActifNouveauX)
     {
-      
-    }
-    void AfficherMessageBox()
-    {
-      
+      blocActifNouveauY[0] = blocActifX[0];
+      blocActifNouveauY[1] = blocActifX[1];
+      blocActifNouveauY[2] = blocActifX[2];
+      blocActifNouveauY[3] = blocActifX[3];
+
+      blocActifNouveauX[0] = blocActifY[0];
+      blocActifNouveauX[1] = -blocActifY[1];
+      blocActifNouveauX[2] = -blocActifY[2];
+      blocActifNouveauX[3] = -blocActifY[3];
+
+
+
     }
     /// <summary>
     /// Faites ici les appels requis pour vos tests unitaires.
