@@ -150,7 +150,7 @@
       this.Controls.Add(this.menuStrip1);
       this.KeyPreview = true;
       this.MainMenuStrip = this.menuStrip1;
-      this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+      this.Margin = new System.Windows.Forms.Padding(5);
       this.Name = "tetris";
       this.Text = "Tetris";
       this.Load += new System.EventHandler(this.frmLoad);

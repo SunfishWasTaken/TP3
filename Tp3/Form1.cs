@@ -146,8 +146,6 @@ namespace TP3
 
       return coup;
     }
-     
-    
     void DeplacerCarreDroite()
     {
       if (pointDepartX < nbColonnesJeu - 2)
@@ -197,6 +195,15 @@ namespace TP3
         toutesImagesVisuelles[pointDepartY, pointDepartX + 1].BackColor = Color.Gray;
       }
     }
+
+    void EffectuerRotationHoraire()
+    {
+      
+    }
+    void AfficherMessageBox()
+    {
+      
+    }
     /// <summary>
     /// Faites ici les appels requis pour vos tests unitaires.
     /// </summary>
@@ -237,6 +244,10 @@ namespace TP3
       {
         DeplacerCarreBas();
       }
+      else if(e.KeyChar == 'w')
+      {
+        
+      }
     }
 
     private void modifierParamètreToolStripMenuItem_Click(object sender, EventArgs e)
@@ -247,10 +258,7 @@ namespace TP3
 
     private void descendreBlockAuto_Tick(object sender, EventArgs e)
     {
-      if(tableauDeJeu[pointDepartY + 2, pointDepartX] == TypeBloc.None)
-      {
-        DeplacerCarreBas();
-      }
+      DeplacerCarreBas();
     }
   }
 
