@@ -34,7 +34,7 @@ namespace TP3
       descendreAuto.Interval = 1000;
       descendreAuto.Tick += new EventHandler(descendreBlockAuto_Tick);
       descendreBlockAuto.Start();
-      
+
     }
 
     private void InitialiserSurfaceDeJeu(int nbLignes, int nbCols)
@@ -85,7 +85,7 @@ namespace TP3
     int[] blocActifX = new int[4];
     bool peutBouger = false;
     Deplacement coup = new Deplacement();
-    enum Deplacement { LEFT, RIGHT, DOWN, HORAIRE, ANTIHORAIRE, NOMOVE}
+    enum Deplacement { LEFT, RIGHT, DOWN, HORAIRE, ANTIHORAIRE, NOMOVE }
 
     void InitialiserTableauDeJeu()
     {
@@ -101,7 +101,7 @@ namespace TP3
     }
     //void AfficherCarre()
     //{
-     
+
     //  for (int j = 2; j < 4; j++)
     //  {
     //    tableauDeJeu[blocActifY[1], blocActifX[j]] = TypeBloc.Carré;
@@ -116,7 +116,8 @@ namespace TP3
     //  }
     //}
     bool VerifierPeutBouger()
-    { peutBouger = true;
+    {
+      peutBouger = true;
       if (coup == Deplacement.LEFT)
       {
         for (int i = 0; i < blocActifX.Length; i++)
@@ -132,15 +133,15 @@ namespace TP3
             else
             { peutBouger = false; }
           }
-        
+
         }
       }
-      else if (coup==Deplacement.RIGHT)
+      else if (coup == Deplacement.RIGHT)
       {
-      for(int i=0;i<blocActifX.Length;i++)
+        for (int i = 0; i < blocActifX.Length; i++)
         {
           if (pointDepartX + blocActifX[i] + 1 > nbColonnesJeu - 1)
-          { peutBouger = false; }         
+          { peutBouger = false; }
           if (peutBouger == true)
           {
             if (tableauDeJeu[pointDepartY, pointDepartX + blocActifX[i]] == TypeBloc.None)
@@ -148,13 +149,13 @@ namespace TP3
             else
             { peutBouger = false; }
           }
-          
+
         }
       }
-      else if (coup==Deplacement.DOWN)
+      else if (coup == Deplacement.DOWN)
       {
-      for(int i=0;i<blocActifY.Length;i++)
-       {
+        for (int i = 0; i < blocActifY.Length; i++)
+        {
           if (pointDepartX + blocActifY[i] + 1 > nbLignesJeu - 1)
           { peutBouger = false; }
           if (peutBouger == true)
@@ -164,7 +165,7 @@ namespace TP3
             else
             { peutBouger = false; }
           }
-          
+
         }
       }
       return peutBouger;
@@ -173,38 +174,40 @@ namespace TP3
     {
       coup = Deplacement.LEFT;
       {
-        if (coup == Deplacement.LEFT && peutBouger==true)
+        if (coup == Deplacement.LEFT && peutBouger == true)
         {
           pointDepartX = pointDepartX - 1;
           for (int i = 0; i < blocActifX.Length; i++)
-          { 
-          toutesImagesVisuelles[pointDepartY + blocActifY[i], pointDepartX + blocActifX[i]].BackColor = Color.Magenta; 
+          {
+            toutesImagesVisuelles[pointDepartY + blocActifY[i], pointDepartX + blocActifX[i]].BackColor = Color.Magenta;
           }
-        }       
-       }
+        }
+      }
 
       return coup;
     }
     void DeplacerCarreDroite()
-    { coup = Deplacement.RIGHT;
-      if (coup==Deplacement.RIGHT && peutBouger==true)
+    {
+      coup = Deplacement.RIGHT;
+      if (coup == Deplacement.RIGHT && peutBouger == true)
       {
         pointDepartX = pointDepartX + 1;
-        for(int i=0;i<blocActifX.Length;i++)
+        for (int i = 0; i < blocActifX.Length; i++)
         {
-        toutesImagesVisuelles[pointDepartY + blocActifY[i], pointDepartX + blocActifX[i]].BackColor = Color.Magenta;         
-        }    
+          toutesImagesVisuelles[pointDepartY + blocActifY[i], pointDepartX + blocActifX[i]].BackColor = Color.Magenta;
+        }
       }
     }
     void DeplacerCarreBas()
-    { coup = Deplacement.DOWN;
-      if (coup==Deplacement.DOWN && peutBouger==true)
+    {
+      coup = Deplacement.DOWN;
+      if (coup == Deplacement.DOWN && peutBouger == true)
       {
         pointDepartY = pointDepartY + 1;
         for (int i = 0; i < blocActifY.Length; i++)
-        {        
-         toutesImagesVisuelles[pointDepartY + blocActifY[i], pointDepartX + blocActifX[i]].BackColor = Color.Magenta;
-               
+        {
+          toutesImagesVisuelles[pointDepartY + blocActifY[i], pointDepartX + blocActifX[i]].BackColor = Color.Magenta;
+
         }
       }
     }
@@ -228,37 +231,37 @@ namespace TP3
           tableauDeJeu[blocActifNouveauY[i], blocActifNouveauX[i]] = TypeBloc.Carré;
         }
       }
-      
+
     }
     bool VerifierSiFinPartie()
-     {
-       bool partieTerminee = false;
+    {
+      bool partieTerminee = false;
 
-       if(tableauDeJeu[pointDepartY,pointDepartX] == TypeBloc.Gelé)
-       {
-         partieTerminee = true;
-       }
-       return partieTerminee;
-     }
-     void AfficherFinPartie()
-     {
-       bool partieTerminee = VerifierSiFinPartie();
+      if (tableauDeJeu[pointDepartY, pointDepartX] == TypeBloc.Gelé)
+      {
+        partieTerminee = true;
+      }
+      return partieTerminee;
+    }
+    void AfficherFinPartie()
+    {
+      bool partieTerminee = VerifierSiFinPartie();
 
-       if(partieTerminee == true)
-       {
-         MessageBox.Show("Partie terminée", "La partie est terminée", MessageBoxButtons.OK, MessageBoxIcon.Information);
-       }
-     }
+      if (partieTerminee == true)
+      {
+        MessageBox.Show("Partie terminée", "La partie est terminée", MessageBoxButtons.OK, MessageBoxIcon.Information);
+      }
+    }
 
-     void RecommencerPartie()
-     {
-      InitialiserSurfaceDeJeu(nbLignesJeu,nbColonnesJeu);
-     }
+    void RecommencerPartie()
+    {
+      InitialiserSurfaceDeJeu(nbLignesJeu, nbColonnesJeu);
+    }
     /// <summary>
     /// Faites ici les appels requis pour vos tests unitaires.
     /// </summary>
     void ExecuterTestsUnitaires()
-    {      
+    {
       ExecuterTestABC();
       // A compléter...
     }
@@ -267,50 +270,50 @@ namespace TP3
     void ExecuterTestABC()
     {
       // Mise en place des données du test
-      
+
       // Exécuter de la méthode à tester
-      
+
       // Validation des résultats
-      
+
       // Clean-up
     }
     private void tableauJeu_Paint(object sender, PaintEventArgs e)
     {
-      
+
     }
     #endregion
     void AfficherJeu()
     {
       blocActifY = new int[] { 0, 0, 1, 1 };
       blocActifX = new int[] { 0, 1, 0, 1 };
-      for (int i=0;i<tableauDeJeu.GetLength(0);i++)
+      for (int i = 0; i < tableauDeJeu.GetLength(0); i++)
       {
         for (int j = 0; j < tableauDeJeu.GetLength(1); j++)
-        { 
-          if(tableauDeJeu[i,j] == TypeBloc.Gelé)
+        {
+          if (tableauDeJeu[i, j] == TypeBloc.Gelé)
           {
             toutesImagesVisuelles[i, j].BackColor = Color.Gray;
           }
           else
           {
-            toutesImagesVisuelles[i,j].BackColor = Color.Black;
+            toutesImagesVisuelles[i, j].BackColor = Color.Black;
           }
         }
       }
 
-      for(int i=0;i<4;i++)
+      for (int i = 0; i < 4; i++)
       {
-        toutesImagesVisuelles[pointDepartY+blocActifY[i], pointDepartX+blocActifX[i]].BackColor = Color.Magenta;
+        toutesImagesVisuelles[pointDepartY + blocActifY[i], pointDepartX + blocActifX[i]].BackColor = Color.Magenta;
       }
     }
     private void tetris_KeyPress(object sender, KeyPressEventArgs e)
     {
-      if(e.KeyChar=='a')
+      if (e.KeyChar == 'a')
       {
         coup = Deplacement.LEFT;
         bool Valider = VerifierPeutBouger();
         if (peutBouger == true)
-        {         
+        {
           DeplacerCarreGauche();
           AfficherJeu();
         }
@@ -324,7 +327,7 @@ namespace TP3
           DeplacerCarreDroite();
           AfficherJeu();
         }
-           
+
       }
       else if (e.KeyChar == 's')
       {
@@ -335,12 +338,12 @@ namespace TP3
           DeplacerCarreBas();
           AfficherJeu();
         }
-                     
+
       }
-      else if(e.KeyChar == 'w')
+      else if (e.KeyChar == 'w')
       {
         bool valider = VerifierPeutBouger();
-        
+
       }
       AfficherJeu();
     }
@@ -352,26 +355,23 @@ namespace TP3
     }
 
     private void descendreBlockAuto_Tick(object sender, EventArgs e)
-<<<<<<< HEAD
-  {
-      if(tableauDeJeu[pointDepartY + 2, pointDepartX] == TypeBloc.None)
-=======
     {
-      bool valider = VerifierPeutBouger();
-      if(valider == true)
->>>>>>> 0b0b2dff8bc8c2e7bdc8cfddca901697d33b985d
+      if (tableauDeJeu[pointDepartY + 2, pointDepartX] == TypeBloc.None)
       {
-      DeplacerCarreBas();
+        bool valider = VerifierPeutBouger();
+        if (valider == true)
+        {
+          DeplacerCarreBas();
+        }
+
       }
-      
-   }
+    }
+
   }
 
+ }
 
 
 
 
 
-
-
-}
