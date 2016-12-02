@@ -264,8 +264,15 @@ namespace TP3
 
     private void descendreBlockAuto_Tick(object sender, EventArgs e)
     {
+<<<<<<< HEAD
       DeplacerCarreBas();
       AfficherJeu();
+=======
+      if(tableauDeJeu[pointDepartY + 2, pointDepartX] == TypeBloc.None)
+      {
+        DeplacerCarreBas();
+      }
+>>>>>>> 1a1bef28db9e19e5f63f6becfd75dabbdff8b3e6
     }
   }
 
