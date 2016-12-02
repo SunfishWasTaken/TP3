@@ -116,35 +116,55 @@ namespace TP3
     //  }
     //}
     bool VerifierPeutBouger()
-    { peutBouger = false;
+    { peutBouger = true;
       if (coup == Deplacement.LEFT)
       {
         for (int i = 0; i < blocActifX.Length; i++)
         {
-          if (tableauDeJeu[ pointDepartY, pointDepartX + blocActifX[i]] == TypeBloc.None)
-          { peutBouger = true; }
-          else
+          if (pointDepartX + blocActifX[i] - 1 < 0)
           { peutBouger = false; }
+          if (pointDepartX + blocActifY[i] + 1 > nbLignesJeu - 1)
+          { peutBouger = false; }
+          if (peutBouger == true)
+          {
+            if (tableauDeJeu[pointDepartY, pointDepartX + blocActifX[i]] == TypeBloc.None)
+            { peutBouger = true; }
+            else
+            { peutBouger = false; }
+          }
+        
         }
       }
       else if (coup==Deplacement.RIGHT)
       {
       for(int i=0;i<blocActifX.Length;i++)
         {
-          if (tableauDeJeu[pointDepartY, pointDepartX + blocActifX[i]] == TypeBloc.None)
-          { peutBouger = true; }
-          else
-          { peutBouger = false; }
+          if (pointDepartX + blocActifX[i] + 1 > nbColonnesJeu - 1)
+          { peutBouger = false; }         
+          if (peutBouger == true)
+          {
+            if (tableauDeJeu[pointDepartY, pointDepartX + blocActifX[i]] == TypeBloc.None)
+            { peutBouger = true; }
+            else
+            { peutBouger = false; }
+          }
+          
         }
       }
       else if (coup==Deplacement.DOWN)
       {
       for(int i=0;i<blocActifY.Length;i++)
        {
-          if (tableauDeJeu[pointDepartY+blocActifY[i], pointDepartX + blocActifX[i]] == TypeBloc.None)
-          { peutBouger = true; }
-          else
+          if (pointDepartX + blocActifY[i] + 1 > nbLignesJeu - 1)
           { peutBouger = false; }
+          if (peutBouger == true)
+          {
+            if (tableauDeJeu[pointDepartY + blocActifY[i], pointDepartX + blocActifX[i]] == TypeBloc.None)
+            { peutBouger = true; }
+            else
+            { peutBouger = false; }
+          }
+          
         }
       }
       return peutBouger;
@@ -155,10 +175,10 @@ namespace TP3
       {
         if (coup == Deplacement.LEFT && peutBouger==true)
         {
+          pointDepartX = pointDepartX - 1;
           for (int i = 0; i < blocActifX.Length; i++)
-          {
-            if (tableauDeJeu[pointDepartY + blocActifY[i], pointDepartX - blocActifX[i]] == TypeBloc.None)
-            { toutesImagesVisuelles[pointDepartY + blocActifY[i], pointDepartX - blocActifX[i]].BackColor = Color.Magenta; }
+          { 
+          toutesImagesVisuelles[pointDepartY + blocActifY[i], pointDepartX + blocActifX[i]].BackColor = Color.Magenta; 
           }
         }       
        }
@@ -168,10 +188,11 @@ namespace TP3
     void DeplacerCarreDroite()
     { coup = Deplacement.RIGHT;
       if (coup==Deplacement.RIGHT && peutBouger==true)
-      { 
+      {
+        pointDepartX = pointDepartX + 1;
         for(int i=0;i<blocActifX.Length;i++)
-        {if (tableauDeJeu[pointDepartY + blocActifY[i], pointDepartX + blocActifX[i]] == TypeBloc.None)
-          { toutesImagesVisuelles[pointDepartY + blocActifY[i], pointDepartX + blocActifX[i]].BackColor = Color.Magenta; }
+        {
+        toutesImagesVisuelles[pointDepartY + blocActifY[i], pointDepartX + blocActifX[i]].BackColor = Color.Magenta;         
         }    
       }
     }
@@ -179,10 +200,11 @@ namespace TP3
     { coup = Deplacement.DOWN;
       if (coup==Deplacement.DOWN && peutBouger==true)
       {
+        pointDepartY = pointDepartY + 1;
         for (int i = 0; i < blocActifY.Length; i++)
-        {
-          if (tableauDeJeu[pointDepartY + blocActifY[i], pointDepartX + blocActifX[i]] == TypeBloc.None)
-          { toutesImagesVisuelles[pointDepartY + blocActifY[i], pointDepartX + blocActifX[i]].BackColor = Color.Magenta; }
+        {        
+         toutesImagesVisuelles[pointDepartY + blocActifY[i], pointDepartX + blocActifX[i]].BackColor = Color.Magenta;
+               
         }
       }
     }
@@ -248,21 +270,35 @@ namespace TP3
     {
       if(e.KeyChar=='a')
       {
-        AfficherJeu();
+        coup = Deplacement.LEFT;
         bool Valider = VerifierPeutBouger();
-        DeplacerCarreGauche();    
+        if (peutBouger == true)
+        {         
+          DeplacerCarreGauche();
+          AfficherJeu();
+        }
       }
       else if (e.KeyChar == 'd')
       {
-        AfficherJeu();
+        coup = Deplacement.RIGHT;
         bool Valider = VerifierPeutBouger();
-        DeplacerCarreDroite();        
+        if (peutBouger == true)
+        {
+          DeplacerCarreDroite();
+          AfficherJeu();
+        }
+           
       }
       else if (e.KeyChar == 's')
       {
-        AfficherJeu();
+        coup = Deplacement.DOWN;
         bool Valider = VerifierPeutBouger();
-        DeplacerCarreBas();              
+        if (peutBouger == true)
+        {
+          DeplacerCarreBas();
+          AfficherJeu();
+        }
+                     
       }
       else if(e.KeyChar == 'w')
       {
@@ -278,12 +314,13 @@ namespace TP3
     }
 
     private void descendreBlockAuto_Tick(object sender, EventArgs e)
-    {
+  {
       if(tableauDeJeu[pointDepartY + 2, pointDepartX] == TypeBloc.None)
       {
-        DeplacerCarreBas();
+      DeplacerCarreBas();
       }
-    }
+      
+   }
   }
 
 
