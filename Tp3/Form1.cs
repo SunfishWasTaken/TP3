@@ -118,7 +118,7 @@ namespace TP3
     Deplacement DeplacerCarreGauche()
     {
       coup = Deplacement.LEFT;
-      if (pointDepartX >= 1)
+      if (pointDepartX > 1)
       {
         if (coup == Deplacement.LEFT)
         {
@@ -133,14 +133,16 @@ namespace TP3
           toutesImagesVisuelles[pointDepartY + 1, pointDepartX + 3].BackColor = Color.Black;
         }       
        }
-       else if(pointDepartX==0)
+       else if(pointDepartX<=1)
        {
-        pointDepartX = 0;
-        toutesImagesVisuelles[pointDepartY, pointDepartX + 1].BackColor = Color.Magenta;
-        toutesImagesVisuelles[pointDepartY, pointDepartX + 2].BackColor = Color.Magenta;
-        toutesImagesVisuelles[pointDepartY + 1, pointDepartX + 1].BackColor = Color.Magenta;
-        toutesImagesVisuelles[pointDepartY + 1, pointDepartX + 2].BackColor = Color.Magenta;
-       }
+        pointDepartX = 1;
+        toutesImagesVisuelles[pointDepartY, pointDepartX-1].BackColor = Color.Magenta;
+        toutesImagesVisuelles[pointDepartY, pointDepartX].BackColor = Color.Magenta;
+        toutesImagesVisuelles[pointDepartY + 1, pointDepartX].BackColor = Color.Magenta;
+        toutesImagesVisuelles[pointDepartY + 1, pointDepartX-1].BackColor = Color.Magenta;
+        toutesImagesVisuelles[pointDepartY, pointDepartX + 1].BackColor = Color.Black;
+        toutesImagesVisuelles[pointDepartY + 1, pointDepartX + 1].BackColor = Color.Black;
+      }
 
       return coup;
     }
@@ -148,7 +150,7 @@ namespace TP3
     
     void DeplacerCarreDroite()
     {
-      if (pointDepartX < nbColonnesJeu - 1)
+      if (pointDepartX < nbColonnesJeu - 2)
       {
         pointDepartX = pointDepartX + 1;
         toutesImagesVisuelles[pointDepartY, pointDepartX].BackColor = Color.Magenta;
@@ -159,6 +161,16 @@ namespace TP3
         toutesImagesVisuelles[pointDepartY + 1, pointDepartX - 1].BackColor = Color.Black;
         toutesImagesVisuelles[pointDepartY, pointDepartX - 2].BackColor = Color.Black;
         toutesImagesVisuelles[pointDepartY + 1, pointDepartX - 2].BackColor = Color.Black;
+      }
+      else if(pointDepartX<=nbColonnesJeu)
+      {
+        pointDepartX = nbColonnesJeu - 2;
+        toutesImagesVisuelles[pointDepartY, pointDepartX + 1].BackColor = Color.Magenta;
+        toutesImagesVisuelles[pointDepartY, pointDepartX].BackColor = Color.Magenta;
+        toutesImagesVisuelles[pointDepartY + 1, pointDepartX].BackColor = Color.Magenta;
+        toutesImagesVisuelles[pointDepartY + 1, pointDepartX + 1].BackColor = Color.Magenta;
+        toutesImagesVisuelles[pointDepartY, pointDepartX - 1].BackColor = Color.Black;
+        toutesImagesVisuelles[pointDepartY + 1, pointDepartX - 1].BackColor = Color.Black;
       }
     }
     void DeplacerCarreBas()
