@@ -369,6 +369,7 @@ namespace TP3
         if (valider == true)
         {
           DeplacerCarreBas();
+          AfficherJeu();
         }
         else if(valider==false)
         {
