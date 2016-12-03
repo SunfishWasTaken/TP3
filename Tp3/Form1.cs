@@ -156,7 +156,7 @@ namespace TP3
       {
         for (int i = 0; i < blocActifY.Length; i++)
         {
-          if (pointDepartX + blocActifY[i] + 1 > nbLignesJeu - 1)
+          if (pointDepartY + blocActifY[i] >= nbLignesJeu - 1)
           { peutBouger = false; }
           if (peutBouger == true)
           {
@@ -305,6 +305,13 @@ namespace TP3
       {
         toutesImagesVisuelles[pointDepartY + blocActifY[i], pointDepartX + blocActifX[i]].BackColor = Color.Magenta;
       }
+      for (int i=0;i<4;i++)
+      {
+        if (pointDepartY + blocActifY[i] >= nbLignesJeu - 1)
+        {
+          tableauDeJeu[pointDepartY + blocActifY[i], pointDepartX + blocActifX[i]] = TypeBloc.Gelé;
+        }
+      }
     }
     private void tetris_KeyPress(object sender, KeyPressEventArgs e)
     {
@@ -356,12 +363,16 @@ namespace TP3
 
     private void descendreBlockAuto_Tick(object sender, EventArgs e)
     {
-      if (tableauDeJeu[pointDepartY + 2, pointDepartX] == TypeBloc.None)
+      if (tableauDeJeu[pointDepartY, pointDepartX] == TypeBloc.None)
       {
         bool valider = VerifierPeutBouger();
         if (valider == true)
         {
           DeplacerCarreBas();
+        }
+        else if(valider==false)
+        {
+          descendreBlockAuto.Stop();
         }
 
       }
