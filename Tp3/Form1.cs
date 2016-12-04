@@ -33,8 +33,6 @@ namespace TP3
       Timer descendreAuto = new Timer();
       descendreAuto.Interval = 1000;
       descendreAuto.Tick += new EventHandler(descendreBlockAuto_Tick);
-      descendreBlockAuto.Start();
-
     }
 
     private void InitialiserSurfaceDeJeu(int nbLignes, int nbCols)
@@ -252,7 +250,16 @@ namespace TP3
         MessageBox.Show("Partie terminée", "La partie est terminée", MessageBoxButtons.OK, MessageBoxIcon.Information);
       }
     }
+    void DecalerLigne()
+    {for(int i=0;i<tableauDeJeu.GetLength(0);i++)
+     {for(int j=0;j<tableauDeJeu.GetLength(1);j++)
+      {
+      if(tableauDeJeu[i,j]==TypeBloc.Gelé)
+      { tableauDeJeu[i,j] = TypeBloc.None; }
+      }
 
+     }
+    }
     void RecommencerPartie()
     {
       InitialiserSurfaceDeJeu(nbLignesJeu, nbColonnesJeu);
@@ -307,12 +314,23 @@ namespace TP3
       }
       for (int i=0;i<4;i++)
       {
-        if (pointDepartY + blocActifY[i] >= nbLignesJeu - 1)
+        if (pointDepartY+blocActifY[i] >= nbLignesJeu - 1)
         {
+          pointDepartY = nbLignesJeu - 2;
           tableauDeJeu[pointDepartY + blocActifY[i], pointDepartX + blocActifX[i]] = TypeBloc.Gelé;
         }
       }
-    }
+      if(pointDepartY==nbLignesJeu-2)
+      {
+        pointDepartY = 0;
+        pointDepartX = 4;
+        for (int i = 0; i < 4; i++)
+        {
+          toutesImagesVisuelles[pointDepartY + blocActifY[i], pointDepartX + blocActifX[i]].BackColor = Color.Magenta;
+        }
+      }
+      DecalerLigne();
+     }
     private void tetris_KeyPress(object sender, KeyPressEventArgs e)
     {
       if (e.KeyChar == 'a')
@@ -368,6 +386,7 @@ namespace TP3
         bool valider = VerifierPeutBouger();
         if (valider == true)
         {
+          descendreBlockAuto.Start();
           DeplacerCarreBas();
           AfficherJeu();
         }
