@@ -82,6 +82,7 @@ namespace TP3
     int[] blocActifY = new int[4];
     int[] blocActifX = new int[4];
     bool peutBouger = false;
+    int ligneDepart = 0;
     Deplacement coup = new Deplacement();
     enum Deplacement { LEFT, RIGHT, DOWN, HORAIRE, ANTIHORAIRE, NOMOVE }
 
@@ -250,15 +251,8 @@ namespace TP3
         MessageBox.Show("Partie terminée", "La partie est terminée", MessageBoxButtons.OK, MessageBoxIcon.Information);
       }
     }
-    void DecalerLigne()
-    {for(int i=0;i<tableauDeJeu.GetLength(0);i++)
-     {for(int j=0;j<tableauDeJeu.GetLength(1);j++)
-      {
-      if(tableauDeJeu[i,j]==TypeBloc.Gelé)
-      { tableauDeJeu[i,j] = TypeBloc.None; }
-      }
-
-     }
+    void DecalerLigne(int ligneDépart)
+    {
     }
     void RecommencerPartie()
     {
@@ -291,6 +285,7 @@ namespace TP3
     #endregion
     void AfficherJeu()
     {
+      int ligneDepart = 1;
       blocActifY = new int[] { 0, 0, 1, 1 };
       blocActifX = new int[] { 0, 1, 0, 1 };
       for (int i = 0; i < tableauDeJeu.GetLength(0); i++)
@@ -331,6 +326,7 @@ namespace TP3
             toutesImagesVisuelles[pointDepartY + blocActifY[i], pointDepartX + blocActifX[i]].BackColor = Color.Magenta;
           }
         }
+        DecalerLigne(ligneDepart);
       }
      
      }
