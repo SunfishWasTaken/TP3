@@ -253,6 +253,19 @@ namespace TP3
     }
     void DecalerLigne(int ligneDépart)
     {
+      ligneDepart = nbLignesJeu-1;
+      pointDepartY = ligneDepart;
+      for (int i = ligneDepart; i < 0; i++)
+      {
+        for (int j = 0; j < nbColonnesJeu; j++)
+        {
+          if (tableauDeJeu[pointDepartY - 1, j] == TypeBloc.None)
+          {
+            tableauDeJeu[pointDepartY - 1, j] = tableauDeJeu[pointDepartY, j];
+            pointDepartY--;
+          }
+        }
+      }
     }
     void RecommencerPartie()
     {
@@ -326,7 +339,7 @@ namespace TP3
             toutesImagesVisuelles[pointDepartY + blocActifY[i], pointDepartX + blocActifX[i]].BackColor = Color.Magenta;
           }
         }
-        DecalerLigne(ligneDepart);
+        
       }
      
      }
