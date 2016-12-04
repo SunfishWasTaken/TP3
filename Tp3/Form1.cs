@@ -269,7 +269,19 @@ namespace TP3
     }
     void RecommencerPartie()
     {
+      tableauDeJeu = new TypeBloc[nbLignesJeu, nbColonnesJeu];
+
+      for (int i = 0; i < nbLignesJeu - 1; i++)
+      {
+        for (int j = 0; j < nbColonnesJeu - 1; j++)
+        {
+          tableauDeJeu[i, j] = TypeBloc.None;
+        }
+      }
+      pointDepartY = 0;
+      pointDepartX = 4;
       InitialiserSurfaceDeJeu(nbLignesJeu, nbColonnesJeu);
+      AfficherJeu();
     }
     /// <summary>
     /// Faites ici les appels requis pour vos tests unitaires.
@@ -410,6 +422,10 @@ namespace TP3
       }
     }
 
+    private void button1_Click(object sender, EventArgs e)
+    {
+      RecommencerPartie();
+    }
   }
 
  }

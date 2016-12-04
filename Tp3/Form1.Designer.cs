@@ -34,6 +34,7 @@
       this.paramètreDeConfigurationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.modifierParamètreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.descendreBlockAuto = new System.Windows.Forms.Timer(this.components);
+      this.button1 = new System.Windows.Forms.Button();
       this.menuStrip1.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -141,11 +142,22 @@
       this.descendreBlockAuto.Interval = 1000;
       this.descendreBlockAuto.Tick += new System.EventHandler(this.descendreBlockAuto_Tick);
       // 
+      // button1
+      // 
+      this.button1.Location = new System.Drawing.Point(110, 214);
+      this.button1.Name = "button1";
+      this.button1.Size = new System.Drawing.Size(112, 23);
+      this.button1.TabIndex = 3;
+      this.button1.Text = "Recommencer";
+      this.button1.UseVisualStyleBackColor = true;
+      this.button1.Click += new System.EventHandler(this.button1_Click);
+      // 
       // tetris
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(771, 725);
+      this.Controls.Add(this.button1);
       this.Controls.Add(this.tableauJeu);
       this.Controls.Add(this.menuStrip1);
       this.KeyPreview = true;
@@ -169,6 +181,7 @@
     private System.Windows.Forms.ToolStripMenuItem paramètreDeConfigurationToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem modifierParamètreToolStripMenuItem;
     private System.Windows.Forms.Timer descendreBlockAuto;
+    private System.Windows.Forms.Button button1;
   }
 }
 
