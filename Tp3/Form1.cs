@@ -320,16 +320,19 @@ namespace TP3
           tableauDeJeu[pointDepartY + blocActifY[i], pointDepartX + blocActifX[i]] = TypeBloc.Gelé;
         }
       }
-      if(pointDepartY==nbLignesJeu-2)
-      {
-        pointDepartY = 0;
-        pointDepartX = 4;
+ 
+      {        
         for (int i = 0; i < 4; i++)
-        {
-          toutesImagesVisuelles[pointDepartY + blocActifY[i], pointDepartX + blocActifX[i]].BackColor = Color.Magenta;
+        {if (pointDepartY == nbLignesJeu - 2 || tableauDeJeu[pointDepartY + blocActifY[i], pointDepartX + blocActifX[i]] == TypeBloc.Gelé)
+          {
+            tableauDeJeu[pointDepartY + blocActifY[i], pointDepartX + blocActifX[i]] = TypeBloc.Gelé;
+            pointDepartY = 0;
+            pointDepartX = 4;      
+            toutesImagesVisuelles[pointDepartY + blocActifY[i], pointDepartX + blocActifX[i]].BackColor = Color.Magenta;
+          }
         }
       }
-      DecalerLigne();
+     
      }
     private void tetris_KeyPress(object sender, KeyPressEventArgs e)
     {
