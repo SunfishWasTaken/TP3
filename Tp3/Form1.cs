@@ -82,7 +82,7 @@ namespace TP3
     int[] blocActifY = new int[4];
     int[] blocActifX = new int[4];
     bool peutBouger = false;
-    int ligneDepart = 0;
+    
     Deplacement coup = new Deplacement();
     enum Deplacement { LEFT, RIGHT, DOWN, HORAIRE, ANTIHORAIRE, NOMOVE }
 
@@ -251,18 +251,47 @@ namespace TP3
         MessageBox.Show("Partie terminée", "La partie est terminée", MessageBoxButtons.OK, MessageBoxIcon.Information);
       }
     }
-    void DecalerLigne(int ligneDépart)
+    bool estUneLigneComplete()
     {
-      ligneDepart = nbLignesJeu-1;
-      pointDepartY = ligneDepart;
-      for (int i = ligneDepart; i < 0; i++)
+      bool ligneComplete = false;
+      for (int i = 0; i < tableauDeJeu.GetLength(0); i++)
+      {
+        for (int j = 0; j < tableauDeJeu.GetLength(1); j++)
+        {          
+          if (tableauDeJeu[i, j] != TypeBloc.Gelé)
+          {
+            ligneComplete = false;            
+          }
+          else
+          { ligneComplete = true;
+            tableauDeJeu[i, j] = TypeBloc.None;
+          }
+        }
+      
+      }
+      return ligneComplete;
+    }
+    int RetirerLigneComplete()
+    {
+      int nbLignesEnleves = 0;
+      bool ligneComplete = estUneLigneComplete();
+      for (int i=0;i<nbLignesJeu;i++)
+      { if(ligneComplete==true)
+       { DecalerLigne();
+          nbLignesEnleves++;
+       }
+      }
+      return nbLignesEnleves;
+    }
+    void DecalerLigne()
+    { 
+      for (int i = nbLignesJeu-1; i > 0; i--)
       {
         for (int j = 0; j < nbColonnesJeu; j++)
         {
-          if (tableauDeJeu[pointDepartY - 1, j] == TypeBloc.None)
+          if (tableauDeJeu[nbLignesJeu-2, j] == TypeBloc.None)
           {
-            tableauDeJeu[pointDepartY - 1, j] = tableauDeJeu[pointDepartY, j];
-            pointDepartY--;
+            tableauDeJeu[nbLignesJeu - 2, j] = tableauDeJeu[pointDepartY, j];
           }
         }
       }
@@ -310,7 +339,6 @@ namespace TP3
     #endregion
     void AfficherJeu()
     {
-      int ligneDepart = 1;
       blocActifY = new int[] { 0, 0, 1, 1 };
       blocActifX = new int[] { 0, 1, 0, 1 };
       for (int i = 0; i < tableauDeJeu.GetLength(0); i++)
@@ -321,7 +349,7 @@ namespace TP3
           {
             toutesImagesVisuelles[i, j].BackColor = Color.Gray;
           }
-          else
+          else if (tableauDeJeu[i,j]==TypeBloc.None)
           {
             toutesImagesVisuelles[i, j].BackColor = Color.Black;
           }
@@ -343,13 +371,15 @@ namespace TP3
  
       {        
         for (int i = 0; i < 4; i++)
-        {if (pointDepartY == nbLignesJeu - 2 || tableauDeJeu[pointDepartY + blocActifY[i], pointDepartX + blocActifX[i]] == TypeBloc.Gelé)
+        {if (pointDepartY == nbLignesJeu - 2 || tableauDeJeu[pointDepartY+1 + blocActifY[i], pointDepartX + blocActifX[i]] == TypeBloc.Gelé)
           {
             tableauDeJeu[pointDepartY + blocActifY[i], pointDepartX + blocActifX[i]] = TypeBloc.Gelé;
+            tableauDeJeu[pointDepartY + blocActifY[i], pointDepartX +1 + blocActifX[i]] = TypeBloc.Gelé;
             pointDepartY = 0;
             pointDepartX = 4;      
             toutesImagesVisuelles[pointDepartY + blocActifY[i], pointDepartX + blocActifX[i]].BackColor = Color.Magenta;
           }
+          bool resultat = estUneLigneComplete();
         }
         
       }
