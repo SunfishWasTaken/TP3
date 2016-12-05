@@ -420,7 +420,7 @@ namespace TP3
             pointDepartX = 4;      
             toutesImagesVisuelles[pointDepartY + blocActifY[i], pointDepartX + blocActifX[i]].BackColor = Color.Magenta;
           }
-          bool resultat = estUneLigneComplete();
+          
         }
         
       }
