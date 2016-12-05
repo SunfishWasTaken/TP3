@@ -86,6 +86,18 @@ namespace TP3
     Deplacement coup = new Deplacement();
     enum Deplacement { LEFT, RIGHT, DOWN, HORAIRE, ANTIHORAIRE, NOMOVE }
 
+    //variables pour les statistiques
+    int nbCarres = 0;
+    int nbLignes = 0;
+    int nbT = 0;
+    int nbL = 0;
+    int nbJ = 0;
+    int nbS = 0;
+    int nbZ = 0;
+
+    //Rôle : Initialiser le tableau de jeu à zéro, c'est-à-dire rendre tous les blocs noirs.
+    //Paramètre : Aucun
+    //Retour : Aucun
     void InitialiserTableauDeJeu()
     {
       tableauDeJeu = new TypeBloc[nbLignesJeu, nbColonnesJeu];
@@ -169,6 +181,9 @@ namespace TP3
       }
       return peutBouger;
     }
+    //Rôle : Déplacer le bloc carré vers la gauche.
+    //Paramètre : aucun
+    //Retour : Deplacement représentant le coup entré par le joueur(gauche).
     Deplacement DeplacerCarreGauche()
     {
       coup = Deplacement.LEFT;
@@ -185,7 +200,10 @@ namespace TP3
 
       return coup;
     }
-    void DeplacerCarreDroite()
+    //Rôle : Déplacer le bloc carré vers la droite.
+    //Paramètre : aucun
+    //Retour : Deplacement représentant le coup entré par le joueur (droite).
+    Deplacement DeplacerCarreDroite()
     {
       coup = Deplacement.RIGHT;
       if (coup == Deplacement.RIGHT && peutBouger == true)
@@ -196,8 +214,12 @@ namespace TP3
           toutesImagesVisuelles[pointDepartY + blocActifY[i], pointDepartX + blocActifX[i]].BackColor = Color.Magenta;
         }
       }
+      return coup;
     }
-    void DeplacerCarreBas()
+    //Rôle : Déplacer le bloc carré vers le bas.
+    //Paramètre : aucun
+    //Retour : Deplacement représentant le coup entré par le joueur(bas).
+    Deplacement DeplacerCarreBas()
     {
       coup = Deplacement.DOWN;
       if (coup == Deplacement.DOWN && peutBouger == true)
@@ -209,29 +231,35 @@ namespace TP3
 
         }
       }
+      return coup;
     }
-
-    void EffectuerRotationHoraire(int[] blocActifNouveauY, int[] blocActifNouveauX)
+    //Rôle : Effectuer la rotation d'un bloc dans le sens horaire.
+    //Paramètre : Aucun
+    //Retour : Aucun
+    void EffectuerRotationHoraire()
     {
-      blocActifNouveauY[0] = blocActifX[0];
-      blocActifNouveauY[1] = blocActifX[1];
-      blocActifNouveauY[2] = blocActifX[2];
-      blocActifNouveauY[3] = blocActifX[3];
+      blocActifY[0] = blocActifX[0];
+      blocActifY[1] = blocActifX[1];
+      blocActifY[2] = blocActifX[2];
+      blocActifY[3] = blocActifX[3];
 
-      blocActifNouveauX[0] = blocActifY[0];
-      blocActifNouveauX[1] = -blocActifY[1];
-      blocActifNouveauX[2] = -blocActifY[2];
-      blocActifNouveauX[3] = -blocActifY[3];
+      blocActifX[0] = -blocActifY[0];
+      blocActifX[1] = -blocActifY[1];
+      blocActifX[2] = -blocActifY[2];
+      blocActifX[3] = -blocActifY[3];
 
-      for (int i = 0; i < blocActifNouveauY.Length; i++)
+      for (int i = 0; i < blocActifY.Length; i++)
       {
-        for (int j = 0; j < blocActifNouveauX.Length; j++)
+        for (int j = 0; j < blocActifX.Length; j++)
         {
-          tableauDeJeu[blocActifNouveauY[i], blocActifNouveauX[i]] = TypeBloc.Carré;
+          tableauDeJeu[blocActifY[i], blocActifX[i]] = TypeBloc.Carré;
         }
       }
 
     }
+    //Rôle : Vérifier si un nouveau bloc peut être généré dans le tableau de jeu.
+    //Paramètre : Aucun
+    //Retour : Aucun
     bool VerifierSiFinPartie()
     {
       bool partieTerminee = false;
@@ -242,6 +270,9 @@ namespace TP3
       }
       return partieTerminee;
     }
+    //Rôle : Afficher une boîte de dialogue indiquant au joueur que la partie est terminée.
+    //Paramètre : Aucun
+    //Retour : Aucun
     void AfficherFinPartie()
     {
       bool partieTerminee = VerifierSiFinPartie();
@@ -251,6 +282,9 @@ namespace TP3
         MessageBox.Show("Partie terminée", "La partie est terminée", MessageBoxButtons.OK, MessageBoxIcon.Information);
       }
     }
+    //Rôle : Vérifier si une ligne peut être décalée, puis décaler celle-ci si elle peut l'être.
+    //Paramètre : ligneDépart : entier représentant la ligne de départ du compteur de décalage.
+    //Retour : Aucun
     void DecalerLigne(int ligneDépart)
     {
       ligneDepart = nbLignesJeu-1;
@@ -267,6 +301,9 @@ namespace TP3
         }
       }
     }
+    //Rôle : Recommencer la partie lorsqu'elle est terminée.
+    //Paramètre : Aucun
+    //Retour : Aucun
     void RecommencerPartie()
     {
       tableauDeJeu = new TypeBloc[nbLignesJeu, nbColonnesJeu];
@@ -308,6 +345,9 @@ namespace TP3
 
     }
     #endregion
+    //Rôle : Afficher le tableau de jeu courant avec les blocs gelés et le bloc en court.
+    //Paramètre : Aucun
+    //Retour : Aucun
     void AfficherJeu()
     {
       int ligneDepart = 1;
@@ -392,7 +432,7 @@ namespace TP3
       else if (e.KeyChar == 'w')
       {
         bool valider = VerifierPeutBouger();
-
+        
       }
       AfficherJeu();
     }
