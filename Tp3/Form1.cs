@@ -282,10 +282,7 @@ namespace TP3
         MessageBox.Show("Partie terminée", "La partie est terminée", MessageBoxButtons.OK, MessageBoxIcon.Information);
       }
     }
-    //Rôle : Vérifier si une ligne peut être décalée, puis décaler celle-ci si elle peut l'être.
-    //Paramètre : ligneDépart : entier représentant la ligne de départ du compteur de décalage.
-    //Retour : Aucun
-    void DecalerLigne(int ligneDépart)
+    
     bool estUneLigneComplete()
     {
       bool ligneComplete = false;
@@ -318,6 +315,9 @@ namespace TP3
       }
       return nbLignesEnleves;
     }
+    //Rôle : Vérifier si une ligne peut être décalée, puis décaler celle-ci si elle peut l'être.
+    //Paramètre : Aucun
+    //Retour : Aucun
     void DecalerLigne()
     { 
       for (int i = nbLignesJeu-1; i > 0; i--)
