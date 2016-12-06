@@ -281,8 +281,11 @@ namespace TP3
         MessageBox.Show("Partie terminée", "La partie est terminée", MessageBoxButtons.OK, MessageBoxIcon.Information);
       }
     }
-    
-    bool estUneLigneComplete()
+    /// Rôle: Fonction qui verifie si une ligne est complète. Si c'est le cas, la fonction effacera les blocs de cette ligne
+    /// 
+    /// Paramètre:Aucun paramètre
+    /// Retour: retourne un entier représentant le nombre de lignes complètées par le joueur
+    int estUneLigneComplete()
     {
       int nbLigneCompleter = 0;
       int nbGeler = 0;
@@ -301,38 +304,34 @@ namespace TP3
               ligneComplete = true;
               for (int compteur = 0; compteur < nbColonnesJeu; compteur++)
               { tableauDeJeu[i, compteur] = TypeBloc.None; }
+              for (int g = nbLignesJeu - 1; g > 0; g--)
+              {
+                for (int h = 0; h < nbColonnesJeu; h++)
+                {
+                  tableauDeJeu[g, h] = tableauDeJeu[g - nbLigneCompleter, h];
+                }
+              }
             }      
           }
         }
       
       }
-      return ligneComplete;
+      return nbLigneCompleter;
     }
-    int RetirerLigneComplete()
-    {
-      int nbLignesEnleves = 0;
-      bool ligneComplete = estUneLigneComplete();
-      for (int i=0;i<nbLignesJeu;i++)
-      { if(ligneComplete==true)
-       { DecalerLigne();
-          nbLignesEnleves++;
-       }
-      }
-      return nbLignesEnleves;
-    }
+ 
     //Rôle : Vérifier si une ligne peut être décalée, puis décaler celle-ci si elle peut l'être.
     //Paramètre : Aucun
     //Retour : Aucun
     void DecalerLigne()
     {
-      bool ligne=estUneLigneComplete();
-      if (ligne == true)
+      int ligne=estUneLigneComplete();
+      if (ligne > 0)
       {
         for (int i = nbLignesJeu - 1; i > 0; i--)
         {
           for (int j = 0; j < nbColonnesJeu; j++)
-          {           
-              tableauDeJeu[i, j] = tableauDeJeu[i - 1, j];
+          {
+            tableauDeJeu[i, j] = tableauDeJeu[i - 1, j];
           }
         }
       }
@@ -430,8 +429,9 @@ namespace TP3
             pointDepartX = 4;      
             toutesImagesVisuelles[pointDepartY + blocActifY[i], pointDepartX + blocActifX[i]].BackColor = Color.Magenta;
            }
-        bool resultat = estUneLigneComplete();
-        DecalerLigne();
+        int resultat = estUneLigneComplete();
+        if(resultat>0)
+        { score.Text = "Score:100"; }
         }
         
       
