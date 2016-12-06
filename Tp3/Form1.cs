@@ -284,14 +284,19 @@ namespace TP3
     
     bool estUneLigneComplete()
     {
-      bool ligneComplete = true;
+      int nbGeler = 0;
+      bool ligneComplete = false;
       for (int i = 0; i < tableauDeJeu.GetLength(0); i++)
       {
         for (int j = 0; j < tableauDeJeu.GetLength(1); j++)
         {          
-          if (tableauDeJeu[i, j] != TypeBloc.Gelé)
+          if (tableauDeJeu[i, j] == TypeBloc.Gelé)
           {
-            ligneComplete = false;            
+            nbGeler++;
+            if (nbGeler == nbColonnesJeu)
+            {
+              ligneComplete = true;
+            }      
           }
         }
       
@@ -423,8 +428,6 @@ namespace TP3
             pointDepartX = 4;      
             toutesImagesVisuelles[pointDepartY + blocActifY[i], pointDepartX + blocActifX[i]].BackColor = Color.Magenta;
            }
-
-        
         }
         
       
@@ -478,9 +481,12 @@ namespace TP3
     }
 
     private void modifierParamètreToolStripMenuItem_Click(object sender, EventArgs e)
-    {
-      FrmParametre aide = new FrmParametre();
+    { decimal nbColonnesChoisit = 0;
+      decimal nbLignesChoisit = 0;
+      Form2 aide = new Form2();
       aide.ShowDialog();
+      aide.SpecifierInfo( nbColonnesChoisit, nbLignesChoisit);
+      aide.Show();
     }
 
     private void descendreBlockAuto_Tick(object sender, EventArgs e)

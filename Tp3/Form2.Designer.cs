@@ -1,6 +1,6 @@
 ﻿namespace TP3
 {
-  partial class FrmParametre
+  partial class Form2
   {
     /// <summary>
     /// Required designer variable.
@@ -39,7 +39,7 @@
       // label1
       // 
       this.label1.AutoSize = true;
-      this.label1.Location = new System.Drawing.Point(12, 29);
+      this.label1.Location = new System.Drawing.Point(12, 46);
       this.label1.Name = "label1";
       this.label1.Size = new System.Drawing.Size(66, 13);
       this.label1.TabIndex = 0;
@@ -48,7 +48,7 @@
       // label2
       // 
       this.label2.AutoSize = true;
-      this.label2.Location = new System.Drawing.Point(12, 55);
+      this.label2.Location = new System.Drawing.Point(12, 89);
       this.label2.Name = "label2";
       this.label2.Size = new System.Drawing.Size(53, 13);
       this.label2.TabIndex = 1;
@@ -56,59 +56,31 @@
       // 
       // choixNbColonnes
       // 
-      this.choixNbColonnes.Location = new System.Drawing.Point(84, 29);
-      this.choixNbColonnes.Maximum = new decimal(new int[] {
-            15,
-            0,
-            0,
-            0});
-      this.choixNbColonnes.Minimum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
+      this.choixNbColonnes.Location = new System.Drawing.Point(84, 44);
       this.choixNbColonnes.Name = "choixNbColonnes";
-      this.choixNbColonnes.Size = new System.Drawing.Size(37, 20);
+      this.choixNbColonnes.Size = new System.Drawing.Size(49, 20);
       this.choixNbColonnes.TabIndex = 2;
-      this.choixNbColonnes.Value = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
+      this.choixNbColonnes.ValueChanged += new System.EventHandler(this.choixNbColonnes_ValueChanged);
       // 
       // choixNbLignes
       // 
-      this.choixNbLignes.Location = new System.Drawing.Point(84, 55);
-      this.choixNbLignes.Maximum = new decimal(new int[] {
-            30,
-            0,
-            0,
-            0});
-      this.choixNbLignes.Minimum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
+      this.choixNbLignes.Location = new System.Drawing.Point(84, 89);
       this.choixNbLignes.Name = "choixNbLignes";
-      this.choixNbLignes.Size = new System.Drawing.Size(37, 20);
+      this.choixNbLignes.Size = new System.Drawing.Size(49, 20);
       this.choixNbLignes.TabIndex = 3;
-      this.choixNbLignes.Value = new decimal(new int[] {
-            20,
-            0,
-            0,
-            0});
+      this.choixNbLignes.ValueChanged += new System.EventHandler(this.choixNbLignes_ValueChanged);
       // 
-      // FrmParametre
+      // Form2
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(352, 261);
+      this.ClientSize = new System.Drawing.Size(284, 261);
       this.Controls.Add(this.choixNbLignes);
       this.Controls.Add(this.choixNbColonnes);
       this.Controls.Add(this.label2);
       this.Controls.Add(this.label1);
-      this.Name = "FrmParametre";
-      this.Text = "FrmParametre";
+      this.Name = "Form2";
+      this.Text = "Form2";
       ((System.ComponentModel.ISupportInitialize)(this.choixNbColonnes)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.choixNbLignes)).EndInit();
       this.ResumeLayout(false);
