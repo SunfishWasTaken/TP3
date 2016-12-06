@@ -255,7 +255,6 @@ namespace TP3
           tableauDeJeu[blocActifY[i], blocActifX[i]] = TypeBloc.Carré;
         }
       }
-
     }
     //Rôle : Vérifier si un nouveau bloc peut être généré dans le tableau de jeu.
     //Paramètre : Aucun
@@ -382,6 +381,7 @@ namespace TP3
     {
       blocActifY = new int[] { 0, 0, 1, 1 };
       blocActifX = new int[] { 0, 1, 0, 1 };
+
       for (int i = 0; i < tableauDeJeu.GetLength(0); i++)
       {
         for (int j = 0; j < tableauDeJeu.GetLength(1); j++)
@@ -410,12 +410,15 @@ namespace TP3
         }
       }
  
-      {        
+              
         for (int i = 0; i < 4; i++)
-        {if (pointDepartY == nbLignesJeu - 2 || tableauDeJeu[pointDepartY+1 + blocActifY[i], pointDepartX + blocActifX[i]] == TypeBloc.Gelé)
+        {
+        if (pointDepartY == nbLignesJeu - 2 || tableauDeJeu[pointDepartY+1 + blocActifY[i], pointDepartX + blocActifX[i]] == TypeBloc.Gelé)
           {
+            tableauDeJeu[pointDepartY, pointDepartX + blocActifX[i]] = TypeBloc.Gelé;
+            tableauDeJeu[pointDepartY, pointDepartX +1 + blocActifX[i]] = TypeBloc.Gelé;
             tableauDeJeu[pointDepartY + blocActifY[i], pointDepartX + blocActifX[i]] = TypeBloc.Gelé;
-            tableauDeJeu[pointDepartY + blocActifY[i], pointDepartX +1 + blocActifX[i]] = TypeBloc.Gelé;
+            tableauDeJeu[pointDepartY + blocActifY[i], pointDepartX + 1 + blocActifX[i]] = TypeBloc.Gelé;
             pointDepartY = 0;
             pointDepartX = 4;      
             toutesImagesVisuelles[pointDepartY + blocActifY[i], pointDepartX + blocActifX[i]].BackColor = Color.Magenta;
@@ -423,7 +426,7 @@ namespace TP3
           
         }
         
-      }
+      
      
      }
     private void tetris_KeyPress(object sender, KeyPressEventArgs e)
@@ -463,6 +466,11 @@ namespace TP3
       else if (e.KeyChar == 'w')
       {
         bool valider = VerifierPeutBouger();
+        coup = Deplacement.HORAIRE;
+        if(peutBouger == true)
+        {
+          EffectuerRotationHoraire();
+        }
         
       }
       AfficherJeu();
