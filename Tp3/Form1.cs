@@ -304,14 +304,17 @@ namespace TP3
               ligneComplete = true;
               for (int compteur = 0; compteur < nbColonnesJeu; compteur++)
               { tableauDeJeu[i, compteur] = TypeBloc.None; }
-              for (int g = nbLignesJeu - 1; g > 0; g--)
+              if (nbLigneCompleter >= 1)
               {
-                for (int h = 0; h < nbColonnesJeu; h++)
+                for (int g = nbLignesJeu - 1; g > 0; g--)
                 {
-                  tableauDeJeu[g, h] = tableauDeJeu[g - nbLigneCompleter, h];
+                  for (int h = 0; h < nbColonnesJeu; h++)
+                  {
+                    tableauDeJeu[g, h] = tableauDeJeu[g - nbLigneCompleter, h];
+                  }
                 }
               }
-            }      
+             }      
           }
         }
       
