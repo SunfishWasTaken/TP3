@@ -284,7 +284,7 @@ namespace TP3
     
     bool estUneLigneComplete()
     {
-      bool ligneComplete = false;
+      bool ligneComplete = true;
       for (int i = 0; i < tableauDeJeu.GetLength(0); i++)
       {
         for (int j = 0; j < tableauDeJeu.GetLength(1); j++)
@@ -292,10 +292,6 @@ namespace TP3
           if (tableauDeJeu[i, j] != TypeBloc.Gelé)
           {
             ligneComplete = false;            
-          }
-          else
-          { ligneComplete = true;
-            tableauDeJeu[i, j] = TypeBloc.None;
           }
         }
       
@@ -318,14 +314,18 @@ namespace TP3
     //Paramètre : Aucun
     //Retour : Aucun
     void DecalerLigne()
-    { 
-      for (int i = nbLignesJeu-1; i > 0; i--)
+    {
+      bool ligne=estUneLigneComplete();
+      if (ligne == true)
       {
-        for (int j = 0; j < nbColonnesJeu; j++)
+        for (int i = nbLignesJeu - 1; i > 0; i--)
         {
-          if (tableauDeJeu[nbLignesJeu-2, j] == TypeBloc.None)
+          for (int j = 0; j < nbColonnesJeu; j++)
           {
-            tableauDeJeu[nbLignesJeu - 2, j] = tableauDeJeu[pointDepartY, j];
+            if (tableauDeJeu[nbLignesJeu - 2, j] == TypeBloc.Gelé)
+            {
+              tableauDeJeu[nbLignesJeu - 1, j] = TypeBloc.Gelé;
+            }
           }
         }
       }
@@ -422,12 +422,9 @@ namespace TP3
             pointDepartY = 0;
             pointDepartX = 4;      
             toutesImagesVisuelles[pointDepartY + blocActifY[i], pointDepartX + blocActifX[i]].BackColor = Color.Magenta;
-          }
-<<<<<<< HEAD
-         // bool resultat = estUneLigneComplete();
-=======
-          
->>>>>>> daae1fbde01bf696038dd4ce811dde07e48bc60a
+           }
+
+        
         }
         
       
