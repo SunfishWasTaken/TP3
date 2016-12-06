@@ -284,6 +284,7 @@ namespace TP3
     
     bool estUneLigneComplete()
     {
+      int nbLigneCompleter = 0;
       int nbGeler = 0;
       bool ligneComplete = false;
       for (int i = 0; i < tableauDeJeu.GetLength(0); i++)
@@ -296,6 +297,7 @@ namespace TP3
             nbGeler++;
             if (nbGeler == nbColonnesJeu)
             {
+              nbLigneCompleter++;
               ligneComplete = true;
               for (int compteur = 0; compteur < nbColonnesJeu; compteur++)
               { tableauDeJeu[i, compteur] = TypeBloc.None; }
