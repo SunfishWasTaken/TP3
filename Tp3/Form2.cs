@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using WMPLib;
 namespace TP3
 {
   public partial class Form2 : Form
@@ -30,6 +30,13 @@ namespace TP3
     {
       nbColonneChoisit = choixNbColonnes.Value;
       nbLignesChoisit = choixNbLignes.Value;
+    }
+
+    private void checkBox1_CheckedChanged(object sender, EventArgs e)
+    {
+      WindowsMediaPlayer mediaPlayer = new WindowsMediaPlayer();
+      mediaPlayer.URL = "Art/background.mp3";
+      mediaPlayer.controls.play();
     }
   }
 }

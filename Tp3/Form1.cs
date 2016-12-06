@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-
+using System.Diagnostics;
 namespace TP3
 {
   public partial class tetris : Form
@@ -82,6 +82,7 @@ namespace TP3
     int[] blocActifY = new int[4];
     int[] blocActifX = new int[4];
     bool peutBouger = false;
+    int scoreActif = 0;
     
     Deplacement coup = new Deplacement();
     enum Deplacement { LEFT, RIGHT, DOWN, HORAIRE, ANTIHORAIRE, NOMOVE }
@@ -312,7 +313,7 @@ namespace TP3
               { tableauDeJeu[i, compteur] = TypeBloc.None; }
               if (nbLigneCompleter >= 1)
               {
-                for (int g = nbLignesJeu - 1; g > 0; g--)
+                for (int g = nbLignesJeu-1; g > 0; g--)
                 {
                   for (int h = 0; h < nbColonnesJeu; h++)
                   {
@@ -325,6 +326,7 @@ namespace TP3
         }
       
       }
+      scoreActif = nbLigneCompleter * 100;
       return nbLigneCompleter;
     }
     //A.Roy-Lachance
@@ -363,8 +365,8 @@ namespace TP3
       pointDepartY = 0;
       pointDepartX = 4;
       InitialiserSurfaceDeJeu(nbLignesJeu, nbColonnesJeu);
-      AfficherJeu();
-    }
+      AfficherJeu();   
+  }
     /// <summary>
     /// Faites ici les appels requis pour vos tests unitaires.
     /// </summary>
@@ -375,14 +377,23 @@ namespace TP3
     }
 
     // A renommer et commenter!
+    TypeBloc[,] methodeTest(TypeBloc[,] tableauDeJeu)
+    { int resultat = estUneLigneComplete();
+      return tableauDeJeu;
+    }
     void ExecuterTestABC()
     {
       // Mise en place des données du test
+      TypeBloc[,] tableauTest = new TypeBloc[1, nbColonnesJeu - 1];
+      for(int i=0;i<nbColonnesJeu;i++)
+      { tableauTest[0, i] = TypeBloc.Gelé; }
 
       // Exécuter de la méthode à tester
-
+      tableauTest = methodeTest(tableauTest);
       // Validation des résultats
-
+      //for (int i = 0; i < nbColonnesJeu; i++)
+     // { Debug.Assert(tableauTest[0,i]==TypeBloc.None); }
+     
       // Clean-up
     }
     private void tableauJeu_Paint(object sender, PaintEventArgs e)
@@ -442,8 +453,8 @@ namespace TP3
             toutesImagesVisuelles[pointDepartY + blocActifY[i], pointDepartX + blocActifX[i]].BackColor = Color.Magenta;
            }
         int resultat = estUneLigneComplete();
-        if(resultat>0)
-        { score.Text = "Score:100"; }
+        if(resultat>1)
+        { score.Text += scoreActif; }
         }     
      }
      //A.Roy-Lachance
