@@ -288,6 +288,7 @@ namespace TP3
       bool ligneComplete = false;
       for (int i = 0; i < tableauDeJeu.GetLength(0); i++)
       {
+        nbGeler = 0;
         for (int j = 0; j < tableauDeJeu.GetLength(1); j++)
         {          
           if (tableauDeJeu[i, j] == TypeBloc.Gelé)
@@ -296,6 +297,8 @@ namespace TP3
             if (nbGeler == nbColonnesJeu)
             {
               ligneComplete = true;
+              for (int compteur = 0; compteur < nbColonnesJeu; compteur++)
+              { tableauDeJeu[i, compteur] = TypeBloc.None; }
             }      
           }
         }
@@ -326,11 +329,8 @@ namespace TP3
         for (int i = nbLignesJeu - 1; i > 0; i--)
         {
           for (int j = 0; j < nbColonnesJeu; j++)
-          {
-            if (tableauDeJeu[nbLignesJeu - 2, j] == TypeBloc.Gelé)
-            {
-              tableauDeJeu[nbLignesJeu - 1, j] = TypeBloc.Gelé;
-            }
+          {           
+              tableauDeJeu[i, j] = tableauDeJeu[i - 1, j];
           }
         }
       }
@@ -428,6 +428,8 @@ namespace TP3
             pointDepartX = 4;      
             toutesImagesVisuelles[pointDepartY + blocActifY[i], pointDepartX + blocActifX[i]].BackColor = Color.Magenta;
            }
+        bool resultat = estUneLigneComplete();
+        DecalerLigne();
         }
         
       
