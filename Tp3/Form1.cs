@@ -126,6 +126,8 @@ namespace TP3
     //    }
     //  }
     //}
+    
+    //A.Roy-Lachance
     bool VerifierPeutBouger()
     {
       peutBouger = true;
@@ -181,6 +183,8 @@ namespace TP3
       }
       return peutBouger;
     }
+    //A.Roy-Lachance
+
     //Rôle : Déplacer le bloc carré vers la gauche.
     //Paramètre : aucun
     //Retour : Deplacement représentant le coup entré par le joueur(gauche).
@@ -285,7 +289,9 @@ namespace TP3
     /// 
     /// Paramètre:Aucun paramètre
     /// Retour: retourne un entier représentant le nombre de lignes complètées par le joueur
-    int estUneLigneComplete()
+   
+    //A.Roy-Lachance
+     int estUneLigneComplete()
     {
       int nbLigneCompleter = 0;
       int nbGeler = 0;
@@ -321,23 +327,24 @@ namespace TP3
       }
       return nbLigneCompleter;
     }
+    //A.Roy-Lachance
  
     //Rôle : Vérifier si une ligne peut être décalée, puis décaler celle-ci si elle peut l'être.
     //Paramètre : Aucun
     //Retour : Aucun
     void DecalerLigne()
     {
-      int ligne=estUneLigneComplete();
-      if (ligne > 0)
-      {
-        for (int i = nbLignesJeu - 1; i > 0; i--)
-        {
-          for (int j = 0; j < nbColonnesJeu; j++)
-          {
-            tableauDeJeu[i, j] = tableauDeJeu[i - 1, j];
-          }
-        }
-      }
+   //   int ligne=estUneLigneComplete();
+   //   if (ligne > 0)
+   //   {
+     //   for (int i = nbLignesJeu - 1; i > 0; i--)
+     //   {
+      //    for (int j = 0; j < nbColonnesJeu; j++)
+       //   {
+        //    tableauDeJeu[i, j] = tableauDeJeu[i - 1, j];
+        //  }
+       // }
+      //}
     }
     //Rôle : Recommencer la partie lorsqu'elle est terminée.
     //Paramètre : Aucun
@@ -386,7 +393,9 @@ namespace TP3
     //Rôle : Afficher le tableau de jeu courant avec les blocs gelés et le bloc en court.
     //Paramètre : Aucun
     //Retour : Aucun
-    void AfficherJeu()
+   
+    //A.Roy-Lachance
+     void AfficherJeu()
     {
       blocActifY = new int[] { 0, 0, 1, 1 };
       blocActifX = new int[] { 0, 1, 0, 1 };
@@ -435,11 +444,9 @@ namespace TP3
         int resultat = estUneLigneComplete();
         if(resultat>0)
         { score.Text = "Score:100"; }
-        }
-        
-      
-     
+        }     
      }
+     //A.Roy-Lachance
     private void tetris_KeyPress(object sender, KeyPressEventArgs e)
     {
       if (e.KeyChar == 'a')
@@ -486,7 +493,7 @@ namespace TP3
       }
       AfficherJeu();
     }
-
+    //A.Roy-Lachance
     private void modifierParamètreToolStripMenuItem_Click(object sender, EventArgs e)
     { decimal nbColonnesChoisit = 0;
       decimal nbLignesChoisit = 0;
@@ -495,6 +502,7 @@ namespace TP3
       aide.SpecifierInfo( nbColonnesChoisit, nbLignesChoisit);
       aide.Show();
     }
+    //A.Roy-Lachance
 
     private void descendreBlockAuto_Tick(object sender, EventArgs e)
     {
