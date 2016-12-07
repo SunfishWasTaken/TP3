@@ -276,6 +276,7 @@ namespace TP3
 
         }
       }
+      
       return coup;
     }
     //Rôle : Effectuer la rotation d'un bloc dans le sens horaire.
@@ -297,12 +298,12 @@ namespace TP3
     }
     //Rôle : Vérifier si un nouveau bloc peut être généré dans le tableau de jeu.
     //Paramètre : Aucun
-    //Retour : Aucun
+    //Retour : Booléen indiquant si la partie est terminée (true) ou non (false).
     bool VerifierSiFinPartie()
     {
       bool partieTerminee = false;
 
-      if (tableauDeJeu[pointDepartY + 1, pointDepartX] == TypeBloc.Gelé)
+      if (tableauDeJeu[pointDepartY, pointDepartX] == TypeBloc.Gelé)
       {
         partieTerminee = true;
       }
@@ -389,6 +390,12 @@ namespace TP3
       ExecuterTestUneLigne();
       ExecuterTestDeuxLigne();
       ExecuterTestTroisLigne();
+      ExecuterTestPartieTerminee();
+      ExecuterTestPartieNonTerminee();
+      ExecuterTestRotationCentre();
+      ExecuterTestRotationDroite();
+      ExecuterTestRotationGauche();
+      ExecuterTestRotationEntoure();
       //ExecuterTestABC();
       // A compléter...
     }
@@ -399,6 +406,112 @@ namespace TP3
     //int resultat = estUneLigneComplete();
     //  return tableauDeJeu;
   //  }
+    void ExecuterTestRotationCentre()
+    {
+      int pointDepartYTest = pointDepartY;
+      int pointDepartXTest = pointDepartX;
+      pointDepartYTest = 5;
+      pointDepartXTest = 4;
+      int[] blocActifYTest = new int[4];
+      int[] blocActifXTest = new int[4];
+
+      EffectuerRotationHoraire();
+
+      for (int i = 0; i < blocActifX.Length; i++)
+      {
+        blocActifYTest[i] = blocActifY[i];
+        blocActifXTest[i] = blocActifX[i];
+      }
+
+      for (int j = 0; j < blocActifX.Length; j++)
+      {
+        Debug.Assert(blocActifYTest[j] == -blocActifX[j], "Erreur lors de la rotation d'un bloc au centre");
+        Debug.Assert(blocActifXTest[j] == blocActifY[j], "Erreur lors de la rotation d'un bloc au centre");
+      }
+    }
+    void ExecuterTestRotationGauche()
+    {
+      int pointDepartYTest = pointDepartY;
+      int pointDepartXTest = pointDepartX;
+      pointDepartYTest = 5;
+      pointDepartXTest = 0;
+      int[] blocActifYTest = new int[4];
+      int[] blocActifXTest = new int[4];
+
+      EffectuerRotationHoraire();
+
+      for (int i = 0; i < blocActifX.Length; i++)
+      {
+        blocActifYTest[i] = blocActifY[i];
+        blocActifXTest[i] = blocActifX[i];
+      }
+
+      for (int j = 0; j < blocActifX.Length; j++)
+      {
+        Debug.Assert(blocActifYTest[j] == -blocActifX[j], "Erreur lors de la rotation d'un bloc a gauche");
+        Debug.Assert(blocActifXTest[j] == blocActifY[j], "Erreur lors de la rotation d'un bloc a gauche");
+      }
+    }
+    void ExecuterTestRotationDroite()
+    {
+      int pointDepartYTest = pointDepartY;
+      int pointDepartXTest = pointDepartX;
+      pointDepartYTest = 5;
+      pointDepartXTest = nbColonnesJeu - 1;
+      int[] blocActifYTest = new int[4];
+      int[] blocActifXTest = new int[4];
+
+      EffectuerRotationHoraire();
+
+      for (int i = 0; i < blocActifX.Length; i++)
+      {
+        blocActifYTest[i] = blocActifY[i];
+        blocActifXTest[i] = blocActifX[i];
+      }
+
+      for (int j = 0; j < blocActifX.Length; j++)
+      {
+        Debug.Assert(blocActifYTest[j] == -blocActifX[j], "Erreur lors de la rotation d'un bloc a droite");
+        Debug.Assert(blocActifXTest[j] == blocActifY[j], "Erreur lors de la rotation d'un bloc a droite");
+      }
+    }
+    void ExecuterTestRotationEntoure()
+    {
+      int pointDepartYTest = pointDepartY;
+      int pointDepartXTest = pointDepartX;
+      pointDepartYTest = 5;
+      pointDepartXTest = 0;
+      int[] blocActifYTest = new int[4];
+      int[] blocActifXTest = new int[4];
+
+      EffectuerRotationHoraire();
+
+      for (int i = 0; i < blocActifX.Length; i++)
+      {
+        blocActifYTest[i] = blocActifY[i];
+        blocActifXTest[i] = blocActifX[i];
+      }
+
+      for (int j = 0; j < blocActifX.Length; j++)
+      {
+        Debug.Assert(blocActifYTest[j] == blocActifYTest[j], "Erreur lors de la rotation d'un bloc qui ne peut faire de rotation");
+        Debug.Assert(blocActifXTest[j] == blocActifXTest[j], "Erreur lors de la rotation d'un bloc qui ne peut faire de rotation");
+      }
+    }
+    void ExecuterTestPartieTerminee()
+    {
+      //bool partieTerminee = VerifierSiFinPartie();
+     // tableauDeJeu[pointDepartY, pointDepartX] = TypeBloc.Gelé;
+
+      //Debug.Assert(partieTerminee == true, "Erreur lors de la vérification de la partie terminée");
+    }
+    void ExecuterTestPartieNonTerminee()
+    {
+      //bool partieTerminee = VerifierSiFinPartie();
+      //tableauDeJeu[pointDepartY, pointDepartX] = TypeBloc.Gelé;
+
+      //Debug.Assert(partieTerminee == false, "Erreur lors de la vérification de la partie non terminée");
+    }
   ///Rôle: Fonction permettant de tester si une ligne est enlever correctement lorsqu'elle est complète
   /// Aucun paramètre
   /// Aucun retour
@@ -412,8 +525,8 @@ namespace TP3
        //Exécuter de la méthode à tester
      // tableauTest = methodeTest(tableauTest);
        //Validation des résultats
-     for (int i = 0; i < nbColonnesJeu; i++)
-     { Debug.Assert(tableauTest[0,i]==TypeBloc.None); }
+     //for (int i = 0; i < nbColonnesJeu; i++)
+     //{ Debug.Assert(tableauTest[0,i]==TypeBloc.None); }
      
        //Clean-up
     }
@@ -475,60 +588,69 @@ namespace TP3
       blocActifY = new int[] { 0, 0, 1, 1 };
       blocActifX = new int[] { 0, 1, 0, 1 };
 
-      for (int i = 0; i < tableauDeJeu.GetLength(0); i++)
-      {
-        for (int j = 0; j < tableauDeJeu.GetLength(1); j++)
+        for (int i = 0; i < tableauDeJeu.GetLength(0); i++)
         {
-          if (tableauDeJeu[i, j] == TypeBloc.Gelé)
+          for (int j = 0; j < tableauDeJeu.GetLength(1); j++)
           {
-            toutesImagesVisuelles[i, j].BackColor = Color.Gray;
-          }
-          else if (tableauDeJeu[i,j]==TypeBloc.None)
-          {
-            toutesImagesVisuelles[i, j].BackColor = Color.Black;
+            if (tableauDeJeu[i, j] == TypeBloc.Gelé)
+            {
+              toutesImagesVisuelles[i, j].BackColor = Color.Gray;
+            }
+            else if (tableauDeJeu[i, j] == TypeBloc.None)
+            {
+              toutesImagesVisuelles[i, j].BackColor = Color.Black;
+            }
           }
         }
-      }
 
-      for (int i = 0; i < 4; i++)
-      {
-        toutesImagesVisuelles[pointDepartY + blocActifY[i], pointDepartX + blocActifX[i]].BackColor = Color.Magenta;
-      }
-      for (int i=0;i<4;i++)
-      {
-        if (pointDepartY+blocActifY[i] >= nbLignesJeu - 1)
-        {
-          pointDepartY = nbLignesJeu - 2;
-          tableauDeJeu[pointDepartY + blocActifY[i], pointDepartX + blocActifX[i]] = TypeBloc.Gelé;
-        }
-      }
- 
-              
         for (int i = 0; i < 4; i++)
         {
-        if (pointDepartY == nbLignesJeu - 2 || tableauDeJeu[pointDepartY+1 + blocActifY[i], pointDepartX + blocActifX[i]] == TypeBloc.Gelé)
+          toutesImagesVisuelles[pointDepartY + blocActifY[i], pointDepartX + blocActifX[i]].BackColor = Color.Magenta;
+        }
+        for (int i = 0; i < 4; i++)
+        {
+          if (pointDepartY + blocActifY[i] >= nbLignesJeu - 1)
+          {
+            pointDepartY = nbLignesJeu - 2;
+            tableauDeJeu[pointDepartY + blocActifY[i], pointDepartX + blocActifX[i]] = TypeBloc.Gelé;
+          }
+        }
+
+
+        for (int i = 0; i < 4; i++)
+        {
+          if (pointDepartY == nbLignesJeu - 2 || tableauDeJeu[pointDepartY + 1 + blocActifY[i], pointDepartX + blocActifX[i]] == TypeBloc.Gelé)
           {
             tableauDeJeu[pointDepartY, pointDepartX + blocActifX[i]] = TypeBloc.Gelé;
-            tableauDeJeu[pointDepartY, pointDepartX +1 + blocActifX[i]] = TypeBloc.Gelé;
+            tableauDeJeu[pointDepartY, pointDepartX + 1 + blocActifX[i]] = TypeBloc.Gelé;
             tableauDeJeu[pointDepartY + blocActifY[i], pointDepartX + blocActifX[i]] = TypeBloc.Gelé;
             tableauDeJeu[pointDepartY + blocActifY[i], pointDepartX + 1 + blocActifX[i]] = TypeBloc.Gelé;
             pointDepartY = 0;
-            pointDepartX = 4;      
+            pointDepartX = 4;
             toutesImagesVisuelles[pointDepartY + blocActifY[i], pointDepartX + blocActifX[i]].BackColor = Color.Magenta;
-           }
-        int resultat = estUneLigneComplete();
-        if(resultat>1)
-        { score.Text += scoreActif; }
-        if(resultat>0)
-        { score.Text = "Score: 100"; }
+          }
+          int resultat = estUneLigneComplete();
+          if (resultat > 1)
+          { score.Text += scoreActif; }
+          if (resultat > 0)
+          { score.Text = "Score: 100"; }
         }
 
      }
      //A.Roy-Lachance
+
+     //ACusteau
     private void tetris_KeyPress(object sender, KeyPressEventArgs e)
     {
       if (e.KeyChar == 'a')
       {
+        bool partieTerminee = VerifierSiFinPartie();  
+
+        if(partieTerminee)
+        {
+          AfficherFinPartie();
+          RecommencerPartie();
+        }
         coup = Deplacement.LEFT;
         bool Valider = VerifierPeutBouger();
         if (peutBouger == true)
@@ -539,6 +661,13 @@ namespace TP3
       }
       else if (e.KeyChar == 'd')
       {
+        bool partieTerminee = VerifierSiFinPartie();
+
+        if (partieTerminee)
+        {
+          AfficherFinPartie();
+          RecommencerPartie();
+        }
         coup = Deplacement.RIGHT;
         bool Valider = VerifierPeutBouger();
         if (peutBouger == true)
@@ -550,9 +679,16 @@ namespace TP3
       }
       else if (e.KeyChar == 's')
       {
+        bool partieTerminee = VerifierSiFinPartie();
+
+        if (partieTerminee)
+        {
+          AfficherFinPartie();
+          RecommencerPartie();
+        }
         coup = Deplacement.DOWN;
         bool Valider = VerifierPeutBouger();
-        bool partieTerminee = VerifierSiFinPartie();
+
 
         if (peutBouger == true)
         {
@@ -560,11 +696,6 @@ namespace TP3
           AfficherJeu();
         }
 
-        if (tableauDeJeu[pointDepartY, pointDepartX] == TypeBloc.Gelé)
-        {
-            AfficherFinPartie();
-            RecommencerPartie();
-        }
 
       }
       else if (e.KeyChar == 'e')
@@ -580,6 +711,9 @@ namespace TP3
       }
       
     }
+    //Acusteau
+
+
     //A.Roy-Lachance
     private void modifierParamètreToolStripMenuItem_Click(object sender, EventArgs e)
     { decimal nbColonnesChoisit = 0;
