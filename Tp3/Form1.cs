@@ -325,28 +325,9 @@ namespace TP3
       return nbLigneCompleter;
     }
     //A.Roy-Lachance
-<<<<<<< HEAD
 
-=======
  
-    //Rôle : Vérifier si une ligne peut être décalée, puis décaler celle-ci si elle peut l'être.
-    //Paramètre : Aucun
-    //Retour : Aucun
-    //void DecalerLigne()
-    //{
-   //   int ligne=estUneLigneComplete();
-   //   if (ligne > 0)
-   //   {
-     //   for (int i = nbLignesJeu - 1; i > 0; i--)
-     //   {
-      //    for (int j = 0; j < nbColonnesJeu; j++)
-       //   {
-        //    tableauDeJeu[i, j] = tableauDeJeu[i - 1, j];
-        //  }
-       // }
-      //}
-    //}
->>>>>>> af70ab60f87937c8eb4d17c4f11e2c5c1a3d854f
+
     //Rôle : Recommencer la partie lorsqu'elle est terminée.
     //Paramètre : Aucun
     //Retour : Aucun
