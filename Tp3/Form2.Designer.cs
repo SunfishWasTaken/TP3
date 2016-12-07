@@ -32,6 +32,8 @@
       this.label2 = new System.Windows.Forms.Label();
       this.choixNbColonnes = new System.Windows.Forms.NumericUpDown();
       this.choixNbLignes = new System.Windows.Forms.NumericUpDown();
+      this.label3 = new System.Windows.Forms.Label();
+      this.checkBox1 = new System.Windows.Forms.CheckBox();
       ((System.ComponentModel.ISupportInitialize)(this.choixNbColonnes)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.choixNbLignes)).BeginInit();
       this.SuspendLayout();
@@ -70,11 +72,33 @@
       this.choixNbLignes.TabIndex = 3;
       this.choixNbLignes.ValueChanged += new System.EventHandler(this.choixNbLignes_ValueChanged);
       // 
+      // label3
+      // 
+      this.label3.AutoSize = true;
+      this.label3.Location = new System.Drawing.Point(12, 135);
+      this.label3.Name = "label3";
+      this.label3.Size = new System.Drawing.Size(86, 13);
+      this.label3.TabIndex = 4;
+      this.label3.Text = "Activer Musique:";
+      // 
+      // checkBox1
+      // 
+      this.checkBox1.AutoSize = true;
+      this.checkBox1.Location = new System.Drawing.Point(104, 134);
+      this.checkBox1.Name = "checkBox1";
+      this.checkBox1.Size = new System.Drawing.Size(59, 17);
+      this.checkBox1.TabIndex = 5;
+      this.checkBox1.Text = "Activer";
+      this.checkBox1.UseVisualStyleBackColor = true;
+      this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+      // 
       // Form2
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(284, 261);
+      this.Controls.Add(this.checkBox1);
+      this.Controls.Add(this.label3);
       this.Controls.Add(this.choixNbLignes);
       this.Controls.Add(this.choixNbColonnes);
       this.Controls.Add(this.label2);
@@ -94,5 +118,7 @@
     private System.Windows.Forms.Label label2;
     private System.Windows.Forms.NumericUpDown choixNbColonnes;
     private System.Windows.Forms.NumericUpDown choixNbLignes;
+    private System.Windows.Forms.Label label3;
+    private System.Windows.Forms.CheckBox checkBox1;
   }
 }
