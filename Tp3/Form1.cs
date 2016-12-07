@@ -72,16 +72,27 @@ namespace TP3
 
 
     #region Code à développer 
+    //enum contenant tous les états possibles du tableau de jeu
     enum TypeBloc { None, Gelé, Carré, Ligne, T, L, J, S, Z }
+    //Tableau contenant toutes les couleurs possibles du jeu
     Color[] toutesLesCouleurs = new Color[] { Color.Black, Color.Gray, Color.Magenta, Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.LightBlue, Color.Turquoise };
+    //Entier représentant le nombre de colonnes du jeu
     int nbColonnesJeu = 10;
+    //Entier représentant le nombre de lignes du jeu
     int nbLignesJeu = 20;
+    //Tableau 2D représentant le tableau de jeu
     TypeBloc[,] tableauDeJeu = null;
+    //Variable servant de point de départ en Y
     int pointDepartY = 0;
+    //Variable servant de point de départ en X
     int pointDepartX = 4;
+    //Tableau d'entiers contenant les positions en Y du bloc actif
     int[] blocActifY = new int[4];
+    //Tableau d'entiers contenant les positions en X du bloc actif
     int[] blocActifX = new int[4];
+    //Variable booléene servant à déterminer si un bloc peut bouger
     bool peutBouger = false;
+    //Score actif du joueur
     int scoreActif = 0;
     
     Deplacement coup = new Deplacement();
@@ -96,6 +107,7 @@ namespace TP3
     int nbS = 0;
     int nbZ = 0;
 
+    //ARoy-Lachance
     //Rôle : Initialiser le tableau de jeu à zéro, c'est-à-dire rendre tous les blocs noirs.
     //Paramètre : Aucun
     //Retour : Aucun
@@ -111,6 +123,7 @@ namespace TP3
         }
       }
     }
+    //ACusteau
     //Rôle : Trouver aléatoirement une nouvelle pièce à générer
     //Paramètre : Aucun
     //Retour : Le type de bloc à générer, choisi aléatoirement.
@@ -151,6 +164,7 @@ namespace TP3
       }
       return blocActif;
     }
+    //ACusteau
     //void AfficherCarre()
     //{
 
@@ -226,6 +240,7 @@ namespace TP3
     }
     //A.Roy-Lachance
 
+    //ACusteau
     //Rôle : Déplacer le bloc carré vers la gauche.
     //Paramètre : aucun
     //Retour : Deplacement représentant le coup entré par le joueur(gauche).
@@ -233,6 +248,7 @@ namespace TP3
     {
       coup = Deplacement.LEFT;
       {
+        //S'assure que le bloc peut bouger
         if (coup == Deplacement.LEFT && peutBouger == true)
         {
           pointDepartX = pointDepartX - 1;
@@ -245,12 +261,14 @@ namespace TP3
 
       return coup;
     }
+    //ACusteau
     //Rôle : Déplacer le bloc carré vers la droite.
     //Paramètre : aucun
     //Retour : Deplacement représentant le coup entré par le joueur (droite).
     Deplacement DeplacerCarreDroite()
     {
       coup = Deplacement.RIGHT;
+      //S'assure que le bloc peut bouger
       if (coup == Deplacement.RIGHT && peutBouger == true)
       {
         pointDepartX = pointDepartX + 1;
@@ -261,12 +279,14 @@ namespace TP3
       }
       return coup;
     }
+    //ACusteau
     //Rôle : Déplacer le bloc carré vers le bas.
     //Paramètre : aucun
     //Retour : Deplacement représentant le coup entré par le joueur(bas).
     Deplacement DeplacerCarreBas()
     {
       coup = Deplacement.DOWN;
+      //S'assure que le bloc peut bouger
       if (coup == Deplacement.DOWN && peutBouger == true)
       {
         pointDepartY = pointDepartY + 1;
@@ -279,6 +299,7 @@ namespace TP3
       
       return coup;
     }
+    //ACusteau
     //Rôle : Effectuer la rotation d'un bloc dans le sens horaire.
     //Paramètre : Aucun
     //Retour : Aucun
@@ -290,12 +311,14 @@ namespace TP3
       {
         temporaire[i] = blocActifX[i];
       }
+      //Effectue la rotation
       for (int j = 0; j < temporaire.Length; j++)
       {
         blocActifX[j] = -blocActifY[j];
         blocActifY[j] = temporaire[j];
       }
     }
+    //ACusteau
     //Rôle : Vérifier si un nouveau bloc peut être généré dans le tableau de jeu.
     //Paramètre : Aucun
     //Retour : Booléen indiquant si la partie est terminée (true) ou non (false).
@@ -303,12 +326,14 @@ namespace TP3
     {
       bool partieTerminee = false;
 
+      //Vérifie si le point de départ est occupé par un bloc gelé, ce qui cause la fin de la partie.
       if (tableauDeJeu[pointDepartY, pointDepartX] == TypeBloc.Gelé)
       {
         partieTerminee = true;
       }
       return partieTerminee;
     }
+    //ACusteau
     //Rôle : Afficher une boîte de dialogue indiquant au joueur que la partie est terminée.
     //Paramètre : Aucun
     //Retour : Aucun
@@ -362,7 +387,7 @@ namespace TP3
     //A.Roy-Lachance
 
  
-
+    //Acusteau
     //Rôle : Recommencer la partie lorsqu'elle est terminée.
     //Paramètre : Aucun
     //Retour : Aucun
@@ -370,6 +395,7 @@ namespace TP3
     {
       tableauDeJeu = new TypeBloc[nbLignesJeu, nbColonnesJeu];
 
+      //Réinitialise le tableau de jeu
       for (int i = 0; i < nbLignesJeu - 1; i++)
       {
         for (int j = 0; j < nbColonnesJeu - 1; j++)
@@ -382,6 +408,7 @@ namespace TP3
       InitialiserSurfaceDeJeu(nbLignesJeu, nbColonnesJeu);
       AfficherJeu();   
   }
+    //ACusteau
     ///Rôle: Fonction qui appelle les tests unitaires à exécuter
     ///Aucun Paramètre
     ///Aucun retour
@@ -397,15 +424,19 @@ namespace TP3
       ExecuterTestRotationGauche();
       ExecuterTestRotationEntoure();
       //ExecuterTestABC();
-      // A compléter...
     }
 
-    // A renommer et commenter!
     //TypeBloc[,] methodeTest(TypeBloc[,] tableauDeJeu)
-   // { 
+    // { 
     //int resultat = estUneLigneComplete();
     //  return tableauDeJeu;
-  //  }
+    //  }
+
+
+    //ACusteau
+    //Rôle : Tester la rotation d'un bloc au centre du tableau.
+    //Paramètres : Aucun
+    //Retour : Aucun
     void ExecuterTestRotationCentre()
     {
       int pointDepartYTest = pointDepartY;
@@ -429,6 +460,10 @@ namespace TP3
         Debug.Assert(blocActifXTest[j] == blocActifY[j], "Erreur lors de la rotation d'un bloc au centre");
       }
     }
+    //ACusteau
+    //Rôle : Tester la rotation d'un bloc à droite du tableau.
+    //Paramètres : Aucun
+    //Retour : Aucun
     void ExecuterTestRotationGauche()
     {
       int pointDepartYTest = pointDepartY;
@@ -452,6 +487,10 @@ namespace TP3
         Debug.Assert(blocActifXTest[j] == blocActifY[j], "Erreur lors de la rotation d'un bloc a gauche");
       }
     }
+    //ACusteau
+    //Rôle : Tester la rotation d'un bloc à droite du tableau.
+    //Paramètres : Aucun
+    //Retour : Aucun
     void ExecuterTestRotationDroite()
     {
       int pointDepartYTest = pointDepartY;
@@ -475,6 +514,10 @@ namespace TP3
         Debug.Assert(blocActifXTest[j] == blocActifY[j], "Erreur lors de la rotation d'un bloc a droite");
       }
     }
+    //ACusteau
+    //Rôle : S'assurer qu'un bloc qui est entouré d'autres bloc ne fera pas de rotation
+    //Paramètres : Aucun
+    //Retour : Aucun
     void ExecuterTestRotationEntoure()
     {
       int pointDepartYTest = pointDepartY;
@@ -498,6 +541,10 @@ namespace TP3
         Debug.Assert(blocActifXTest[j] == blocActifXTest[j], "Erreur lors de la rotation d'un bloc qui ne peut faire de rotation");
       }
     }
+    //ACusteau
+    //Rôle : Tester si la partie est terminée.
+    //Paramètres : Aucun
+    //Retour : Aucun
     void ExecuterTestPartieTerminee()
     {
       //bool partieTerminee = VerifierSiFinPartie();
@@ -505,6 +552,10 @@ namespace TP3
 
       //Debug.Assert(partieTerminee == true, "Erreur lors de la vérification de la partie terminée");
     }
+    //ACusteau
+    //Rôle : Tester si la partie n'est pas terminée.
+    //Paramètre : Aucun
+    //Retour : Aucun
     void ExecuterTestPartieNonTerminee()
     {
       //bool partieTerminee = VerifierSiFinPartie();
@@ -512,7 +563,8 @@ namespace TP3
 
       //Debug.Assert(partieTerminee == false, "Erreur lors de la vérification de la partie non terminée");
     }
-  ///Rôle: Fonction permettant de tester si une ligne est enlever correctement lorsqu'elle est complète
+    // ARoy-Lachance
+    ///Rôle: Fonction permettant de tester si une ligne est enlever correctement lorsqu'elle est complète
   /// Aucun paramètre
   /// Aucun retour
     void ExecuterTestUneLigne()
@@ -530,6 +582,7 @@ namespace TP3
      
        //Clean-up
     }
+    //ARoy-Lachance
     ///Rôle: Fonction permettant de tester si les lignes sont enlevées correctement lorsqu'il y en a deux de complétées en même temps
     ///Aucun Paramètre
     ///Aucun retour
@@ -551,6 +604,7 @@ namespace TP3
     //    Debug.Assert(tableauDeJeu[1, j] == TypeBloc.None);
    //   }
     }
+    //ARoy-Lachance
     ///Rôle:Fonction permettant de tester si les lignes sont enlevées correctement lorsqu'il y en a trois de complétées en même temps
     ///Aucun Paramètre
     ///Aucun retour
@@ -573,6 +627,7 @@ namespace TP3
       //Debug.Assert(tableauDeJeu[2,j]==TypeBloc.None);
       //   }
     }
+    //ARoy-Lachance
     private void tableauJeu_Paint(object sender, PaintEventArgs e)
     {
 
@@ -640,6 +695,9 @@ namespace TP3
      //A.Roy-Lachance
 
      //ACusteau
+     //Rôle : Recevoir les touches entrées par le joueur pour déplacer les blocs
+     //Paramètres :
+     //Retour : Aucun
     private void tetris_KeyPress(object sender, KeyPressEventArgs e)
     {
       if (e.KeyChar == 'a')
@@ -725,6 +783,10 @@ namespace TP3
     }
     //A.Roy-Lachance
 
+    //ACusteau
+    //Rôle : S'occuper de faire descendre le bloc automatiquement à toutes les secondes.
+    //Paramètres :
+    //Retour : Aucun
     private void descendreBlockAuto_Tick(object sender, EventArgs e)
     {
       if (tableauDeJeu[pointDepartY, pointDepartX] == TypeBloc.None)
@@ -744,6 +806,10 @@ namespace TP3
       }
     }
 
+    //ACusteau
+    //Rôle : Permettre au joueur de recommencer la partie.
+    //Paramètres :
+    //Retour : Aucun
     private void button1_Click(object sender, EventArgs e)
     {
       RecommencerPartie();
