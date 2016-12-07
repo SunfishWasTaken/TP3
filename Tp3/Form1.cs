@@ -111,6 +111,46 @@ namespace TP3
         }
       }
     }
+    //Rôle : Trouver aléatoirement une nouvelle pièce à générer
+    //Paramètre : Aucun
+    //Retour : Le type de bloc à générer, choisi aléatoirement.
+    TypeBloc TrouverNouvellePieceAGenerer()
+    {
+      TypeBloc blocActif = TypeBloc.None;
+      int pieceActive = 0;
+      Random rnd = new Random();
+      pieceActive = rnd.Next(2, 9);
+
+      if (pieceActive == 2)
+      {
+        blocActif = TypeBloc.Carré;
+      }
+      if (pieceActive == 3)
+      {
+        blocActif = TypeBloc.Ligne;
+      }
+      if (pieceActive == 4)
+      {
+        blocActif = TypeBloc.T;
+      }
+      if (pieceActive == 5)
+      {
+        blocActif = TypeBloc.L;
+      }
+      if (pieceActive == 6)
+      {
+        blocActif = TypeBloc.J;
+      }
+      if (pieceActive == 7)
+      {
+        blocActif = TypeBloc.S;
+      }
+      if (pieceActive == 8)
+      {
+        blocActif = TypeBloc.Z;
+      }
+      return blocActif;
+    }
     //void AfficherCarre()
     //{
 
@@ -262,7 +302,7 @@ namespace TP3
     {
       bool partieTerminee = false;
 
-      if (tableauDeJeu[pointDepartY, pointDepartX] == TypeBloc.Gelé)
+      if (tableauDeJeu[pointDepartY + 1, pointDepartX] == TypeBloc.Gelé)
       {
         partieTerminee = true;
       }
@@ -273,13 +313,7 @@ namespace TP3
     //Retour : Aucun
     void AfficherFinPartie()
     {
-      bool partieTerminee = VerifierSiFinPartie();
-      
-
-      if (partieTerminee == true)
-      {
         MessageBox.Show("Partie terminée", "La partie est terminée", MessageBoxButtons.OK, MessageBoxIcon.Information);
-      }
     }
     /// Rôle: Fonction qui verifie si une ligne est complète. Si c'est le cas, la fonction effacera les blocs de cette ligne
     /// 
@@ -367,7 +401,7 @@ namespace TP3
     /// </summary>
     void ExecuterTestsUnitaires()
     {
-      ExecuterTestABC();
+      //ExecuterTestABC();
       // A compléter...
     }
 
@@ -383,13 +417,13 @@ namespace TP3
       for(int i=0;i<nbColonnesJeu;i++)
       { tableauTest[0, i] = TypeBloc.Gelé; }
 
-      // Exécuter de la méthode à tester
+       //Exécuter de la méthode à tester
       tableauTest = methodeTest(tableauTest);
-      // Validation des résultats
-      //for (int i = 0; i < nbColonnesJeu; i++)
-     // { Debug.Assert(tableauTest[0,i]==TypeBloc.None); }
+       //Validation des résultats
+     for (int i = 0; i < nbColonnesJeu; i++)
+     { Debug.Assert(tableauTest[0,i]==TypeBloc.None); }
      
-      // Clean-up
+       //Clean-up
     }
     private void tableauJeu_Paint(object sender, PaintEventArgs e)
     {
@@ -452,7 +486,8 @@ namespace TP3
         { score.Text += scoreActif; }
         if(resultat>0)
         { score.Text = "Score: 100"; }
-        }     
+        }
+
      }
      //A.Roy-Lachance
     private void tetris_KeyPress(object sender, KeyPressEventArgs e)
@@ -482,10 +517,18 @@ namespace TP3
       {
         coup = Deplacement.DOWN;
         bool Valider = VerifierPeutBouger();
+        bool partieTerminee = VerifierSiFinPartie();
+
         if (peutBouger == true)
         {
           DeplacerCarreBas();
           AfficherJeu();
+        }
+
+        if (tableauDeJeu[pointDepartY, pointDepartX] == TypeBloc.Gelé)
+        {
+            AfficherFinPartie();
+            RecommencerPartie();
         }
 
       }
