@@ -36,6 +36,7 @@
       this.descendreBlockAuto = new System.Windows.Forms.Timer(this.components);
       this.button1 = new System.Windows.Forms.Button();
       this.score = new System.Windows.Forms.Label();
+      this.timerDureePartie = new System.Windows.Forms.Timer(this.components);
       this.menuStrip1.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -164,6 +165,10 @@
       this.score.TabIndex = 4;
       this.score.Text = "Score:";
       // 
+      // timerDureePartie
+      // 
+      this.timerDureePartie.Interval = 1000;
+      // 
       // tetris
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -175,7 +180,7 @@
       this.Controls.Add(this.menuStrip1);
       this.KeyPreview = true;
       this.MainMenuStrip = this.menuStrip1;
-      this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+      this.Margin = new System.Windows.Forms.Padding(5);
       this.Name = "tetris";
       this.Text = "Tetris";
       this.Load += new System.EventHandler(this.frmLoad);
@@ -196,6 +201,7 @@
     private System.Windows.Forms.Timer descendreBlockAuto;
     private System.Windows.Forms.Button button1;
     private System.Windows.Forms.Label score;
+    private System.Windows.Forms.Timer timerDureePartie;
   }
 }
 

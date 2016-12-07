@@ -3,6 +3,11 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Diagnostics;
 namespace TP3
+/*Jeu de tetris, dans lequel le joueur peut faire bouger des blocs, suivant les règles générales du jeu classique Tetris.
+ * 
+ * 
+ * Auteurs: Anthony Custeau et Antoine Roy-Lachance
+ * */
 {
   public partial class tetris : Form
   {
@@ -262,9 +267,9 @@ namespace TP3
       return coup;
     }
     //ACusteau
-    //Rôle : Déplacer le bloc carré vers la droite.
-    //Paramètre : aucun
-    //Retour : Deplacement représentant le coup entré par le joueur (droite).
+    ///Rôle : Déplacer le bloc carré vers la droite.
+    ///Paramètre : aucun
+    ///Retour : Deplacement représentant le coup entré par le joueur (droite).
     Deplacement DeplacerCarreDroite()
     {
       coup = Deplacement.RIGHT;
@@ -280,9 +285,9 @@ namespace TP3
       return coup;
     }
     //ACusteau
-    //Rôle : Déplacer le bloc carré vers le bas.
-    //Paramètre : aucun
-    //Retour : Deplacement représentant le coup entré par le joueur(bas).
+    ///Rôle : Déplacer le bloc carré vers le bas.
+    ///Paramètre : aucun
+    ///Retour : Deplacement représentant le coup entré par le joueur(bas).
     Deplacement DeplacerCarreBas()
     {
       coup = Deplacement.DOWN;
@@ -300,9 +305,9 @@ namespace TP3
       return coup;
     }
     //ACusteau
-    //Rôle : Effectuer la rotation d'un bloc dans le sens horaire.
-    //Paramètre : Aucun
-    //Retour : Aucun
+    ///Rôle : Effectuer la rotation d'un bloc dans le sens horaire.
+    ///Paramètre : Aucun
+    ///Retour : Aucun
     void EffectuerRotationHoraire()
     {
       int[] temporaire = new int[4];
@@ -319,9 +324,9 @@ namespace TP3
       }
     }
     //ACusteau
-    //Rôle : Vérifier si un nouveau bloc peut être généré dans le tableau de jeu.
-    //Paramètre : Aucun
-    //Retour : Booléen indiquant si la partie est terminée (true) ou non (false).
+    ///Rôle : Vérifier si un nouveau bloc peut être généré dans le tableau de jeu.
+    ///Paramètre : Aucun
+    ///Retour : Booléen indiquant si la partie est terminée (true) ou non (false).
     bool VerifierSiFinPartie()
     {
       bool partieTerminee = false;
@@ -334,9 +339,9 @@ namespace TP3
       return partieTerminee;
     }
     //ACusteau
-    //Rôle : Afficher une boîte de dialogue indiquant au joueur que la partie est terminée.
-    //Paramètre : Aucun
-    //Retour : Aucun
+    ///Rôle : Afficher une boîte de dialogue indiquant au joueur que la partie est terminée.
+    ///Paramètre : Aucun
+    ///Retour : Aucun
     void AfficherFinPartie()
     {
         MessageBox.Show("Partie terminée", "La partie est terminée", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -388,9 +393,9 @@ namespace TP3
 
  
     //Acusteau
-    //Rôle : Recommencer la partie lorsqu'elle est terminée.
-    //Paramètre : Aucun
-    //Retour : Aucun
+    ///Rôle : Recommencer la partie lorsqu'elle est terminée.
+    ///Paramètre : Aucun
+    ///Retour : Aucun
     void RecommencerPartie()
     {
       tableauDeJeu = new TypeBloc[nbLignesJeu, nbColonnesJeu];
@@ -406,7 +411,7 @@ namespace TP3
       pointDepartY = 0;
       pointDepartX = 4;
       InitialiserSurfaceDeJeu(nbLignesJeu, nbColonnesJeu);
-      AfficherJeu();   
+      AfficherJeu();
   }
     //ACusteau
     ///Rôle: Fonction qui appelle les tests unitaires à exécuter
@@ -461,9 +466,9 @@ namespace TP3
       }
     }
     //ACusteau
-    //Rôle : Tester la rotation d'un bloc à droite du tableau.
-    //Paramètres : Aucun
-    //Retour : Aucun
+    ///Rôle : Tester la rotation d'un bloc à droite du tableau.
+    ///Paramètres : Aucun
+    ///Retour : Aucun
     void ExecuterTestRotationGauche()
     {
       int pointDepartYTest = pointDepartY;
@@ -488,9 +493,9 @@ namespace TP3
       }
     }
     //ACusteau
-    //Rôle : Tester la rotation d'un bloc à droite du tableau.
-    //Paramètres : Aucun
-    //Retour : Aucun
+    ///Rôle : Tester la rotation d'un bloc à droite du tableau.
+    ///Paramètres : Aucun
+    ///Retour : Aucun
     void ExecuterTestRotationDroite()
     {
       int pointDepartYTest = pointDepartY;
@@ -515,9 +520,9 @@ namespace TP3
       }
     }
     //ACusteau
-    //Rôle : S'assurer qu'un bloc qui est entouré d'autres bloc ne fera pas de rotation
-    //Paramètres : Aucun
-    //Retour : Aucun
+    ///Rôle : S'assurer qu'un bloc qui est entouré d'autres bloc ne fera pas de rotation
+    ///Paramètres : Aucun
+    ///Retour : Aucun
     void ExecuterTestRotationEntoure()
     {
       int pointDepartYTest = pointDepartY;
@@ -542,9 +547,9 @@ namespace TP3
       }
     }
     //ACusteau
-    //Rôle : Tester si la partie est terminée.
-    //Paramètres : Aucun
-    //Retour : Aucun
+    ///Rôle : Tester si la partie est terminée.
+    ///Paramètres : Aucun
+    ///Retour : Aucun
     void ExecuterTestPartieTerminee()
     {
       //bool partieTerminee = VerifierSiFinPartie();
@@ -553,9 +558,9 @@ namespace TP3
       //Debug.Assert(partieTerminee == true, "Erreur lors de la vérification de la partie terminée");
     }
     //ACusteau
-    //Rôle : Tester si la partie n'est pas terminée.
-    //Paramètre : Aucun
-    //Retour : Aucun
+    ///Rôle : Tester si la partie n'est pas terminée.
+    ///Paramètre : Aucun
+    ///Retour : Aucun
     void ExecuterTestPartieNonTerminee()
     {
       //bool partieTerminee = VerifierSiFinPartie();
@@ -633,10 +638,9 @@ namespace TP3
 
     }
     #endregion
-    //Rôle : Afficher le tableau de jeu courant avec les blocs gelés et le bloc en court.
-    //Paramètre : Aucun
-    //Retour : Aucun
-   
+    ///Rôle : Afficher le tableau de jeu courant avec les blocs gelés et le bloc en court.
+    ///Paramètre : Aucun
+    ///Retour : Aucun
     //A.Roy-Lachance
      void AfficherJeu()
     {
@@ -695,9 +699,9 @@ namespace TP3
      //A.Roy-Lachance
 
      //ACusteau
-     //Rôle : Recevoir les touches entrées par le joueur pour déplacer les blocs
-     //Paramètres :
-     //Retour : Aucun
+     ///Rôle : Recevoir les touches entrées par le joueur pour déplacer les blocs
+     ///Paramètres :
+     ///Retour : Aucun
     private void tetris_KeyPress(object sender, KeyPressEventArgs e)
     {
       if (e.KeyChar == 'a')
@@ -784,9 +788,9 @@ namespace TP3
     //A.Roy-Lachance
 
     //ACusteau
-    //Rôle : S'occuper de faire descendre le bloc automatiquement à toutes les secondes.
-    //Paramètres :
-    //Retour : Aucun
+    ///Rôle : S'occuper de faire descendre le bloc automatiquement à toutes les secondes.
+    ///Paramètres :
+    ///Retour : Aucun
     private void descendreBlockAuto_Tick(object sender, EventArgs e)
     {
       if (tableauDeJeu[pointDepartY, pointDepartX] == TypeBloc.None)
@@ -805,11 +809,10 @@ namespace TP3
 
       }
     }
-
     //ACusteau
-    //Rôle : Permettre au joueur de recommencer la partie.
-    //Paramètres :
-    //Retour : Aucun
+    ///Rôle : Permettre au joueur de recommencer la partie.
+    ///Paramètres :
+    ///Retour : Aucun
     private void button1_Click(object sender, EventArgs e)
     {
       RecommencerPartie();
