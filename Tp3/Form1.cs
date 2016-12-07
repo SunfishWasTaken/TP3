@@ -359,24 +359,9 @@ namespace TP3
       return nbLigneCompleter;
     }
     //A.Roy-Lachance
+
  
-    //Rôle : Vérifier si une ligne peut être décalée, puis décaler celle-ci si elle peut l'être.
-    //Paramètre : Aucun
-    //Retour : Aucun
-    //void DecalerLigne()
-    //{
-   //   int ligne=estUneLigneComplete();
-   //   if (ligne > 0)
-   //   {
-     //   for (int i = nbLignesJeu - 1; i > 0; i--)
-     //   {
-      //    for (int j = 0; j < nbColonnesJeu; j++)
-       //   {
-        //    tableauDeJeu[i, j] = tableauDeJeu[i - 1, j];
-        //  }
-       // }
-      //}
-    //}
+
     //Rôle : Recommencer la partie lorsqu'elle est terminée.
     //Paramètre : Aucun
     //Retour : Aucun
@@ -396,34 +381,84 @@ namespace TP3
       InitialiserSurfaceDeJeu(nbLignesJeu, nbColonnesJeu);
       AfficherJeu();   
   }
-    /// <summary>
-    /// Faites ici les appels requis pour vos tests unitaires.
-    /// </summary>
+    ///Rôle: Fonction qui appelle les tests unitaires à exécuter
+    ///Aucun Paramètre
+    ///Aucun retour
     void ExecuterTestsUnitaires()
     {
+      ExecuterTestUneLigne();
+      ExecuterTestDeuxLigne();
+      ExecuterTestTroisLigne();
       //ExecuterTestABC();
       // A compléter...
     }
 
     // A renommer et commenter!
-    TypeBloc[,] methodeTest(TypeBloc[,] tableauDeJeu)
-    { int resultat = estUneLigneComplete();
-      return tableauDeJeu;
-    }
-    void ExecuterTestABC()
+    //TypeBloc[,] methodeTest(TypeBloc[,] tableauDeJeu)
+   // { 
+    //int resultat = estUneLigneComplete();
+    //  return tableauDeJeu;
+  //  }
+  ///Rôle: Fonction permettant de tester si une ligne est enlever correctement lorsqu'elle est complète
+  /// Aucun paramètre
+  /// Aucun retour
+    void ExecuterTestUneLigne()
     {
       // Mise en place des données du test
-      TypeBloc[,] tableauTest = new TypeBloc[1, nbColonnesJeu - 1];
-      for(int i=0;i<nbColonnesJeu;i++)
-      { tableauTest[0, i] = TypeBloc.Gelé; }
+     // TypeBloc[,] tableauTest = new TypeBloc[1, nbColonnesJeu];
+      //for(int i=0;i<nbColonnesJeu;i++)
+     // { tableauTest[0, i] = TypeBloc.Gelé; }
 
        //Exécuter de la méthode à tester
-      tableauTest = methodeTest(tableauTest);
+     // tableauTest = methodeTest(tableauTest);
        //Validation des résultats
      for (int i = 0; i < nbColonnesJeu; i++)
      { Debug.Assert(tableauTest[0,i]==TypeBloc.None); }
      
        //Clean-up
+    }
+    ///Rôle: Fonction permettant de tester si les lignes sont enlevées correctement lorsqu'il y en a deux de complétées en même temps
+    ///Aucun Paramètre
+    ///Aucun retour
+    void ExecuterTestDeuxLigne()
+    {
+     // TypeBloc[,] tableauTest = new TypeBloc[2, nbColonnesJeu - 1];
+     // for (int i = 0; i < 2; i++)
+   //   {
+    //    for (int j = 0; j < nbColonnesJeu; j++)
+    //    { tableauTest[i, j] = TypeBloc.Gelé; }
+   //   }
+      // Exécuter de la méthode à tester
+   //   tableauTest = methodeTest(tableauTest);
+      // Validation des résultats
+
+  //    for (int j = 0; j < nbColonnesJeu; j++)
+   //   {
+    //    Debug.Assert(tableauTest[0, j] == TypeBloc.None);
+    //    Debug.Assert(tableauDeJeu[1, j] == TypeBloc.None);
+   //   }
+    }
+    ///Rôle:Fonction permettant de tester si les lignes sont enlevées correctement lorsqu'il y en a trois de complétées en même temps
+    ///Aucun Paramètre
+    ///Aucun retour
+    void ExecuterTestTroisLigne()
+    {
+      // TypeBloc[,] tableauTest = new TypeBloc[2, nbColonnesJeu - 1];
+      // for (int i = 0; i < 3; i++)
+      //   {
+      //    for (int j = 0; j < nbColonnesJeu; j++)
+      //    { tableauTest[i, j] = TypeBloc.Gelé; }
+      //   }
+      // Exécuter de la méthode à tester
+      //   tableauTest = methodeTest(tableauTest);
+      // Validation des résultats
+
+      //    for (int j = 0; j < nbColonnesJeu; j++)
+      //   {
+      //    Debug.Assert(tableauTest[0, j] == TypeBloc.None);
+      //    Debug.Assert(tableauDeJeu[1, j] == TypeBloc.None);
+      //Debug.Assert(tableauDeJeu[2,j]==TypeBloc.None);
+      //   }
     }
     private void tableauJeu_Paint(object sender, PaintEventArgs e)
     {
