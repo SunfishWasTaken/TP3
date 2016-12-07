@@ -242,22 +242,16 @@ namespace TP3
     //Retour : Aucun
     void EffectuerRotationHoraire()
     {
-      blocActifY[0] = blocActifX[0];
-      blocActifY[1] = blocActifX[1];
-      blocActifY[2] = blocActifX[2];
-      blocActifY[3] = blocActifX[3];
+      int[] temporaire = new int[4];
 
-      blocActifX[0] = -blocActifY[0];
-      blocActifX[1] = -blocActifY[1];
-      blocActifX[2] = -blocActifY[2];
-      blocActifX[3] = -blocActifY[3];
-
-      for (int i = 0; i < blocActifY.Length; i++)
+      for (int i = 0; i < temporaire.Length; i++)
       {
-        for (int j = 0; j < blocActifX.Length; j++)
-        {
-          tableauDeJeu[blocActifY[i], blocActifX[i]] = TypeBloc.Carré;
-        }
+        temporaire[i] = blocActifX[i];
+      }
+      for (int j = 0; j < temporaire.Length; j++)
+      {
+        blocActifX[j] = -blocActifY[j];
+        blocActifY[j] = temporaire[j];
       }
     }
     //Rôle : Vérifier si un nouveau bloc peut être généré dans le tableau de jeu.
@@ -279,6 +273,7 @@ namespace TP3
     void AfficherFinPartie()
     {
       bool partieTerminee = VerifierSiFinPartie();
+      
 
       if (partieTerminee == true)
       {
@@ -332,8 +327,8 @@ namespace TP3
     //Rôle : Vérifier si une ligne peut être décalée, puis décaler celle-ci si elle peut l'être.
     //Paramètre : Aucun
     //Retour : Aucun
-    void DecalerLigne()
-    {
+    //void DecalerLigne()
+    //{
    //   int ligne=estUneLigneComplete();
    //   if (ligne > 0)
    //   {
@@ -345,7 +340,7 @@ namespace TP3
         //  }
        // }
       //}
-    }
+    //}
     //Rôle : Recommencer la partie lorsqu'elle est terminée.
     //Paramètre : Aucun
     //Retour : Aucun
@@ -443,7 +438,7 @@ namespace TP3
            }
         int resultat = estUneLigneComplete();
         if(resultat>0)
-        { score.Text = "Score:100"; }
+        { score.Text = "Score: 100"; }
         }     
      }
      //A.Roy-Lachance
@@ -481,17 +476,18 @@ namespace TP3
         }
 
       }
-      else if (e.KeyChar == 'w')
+      else if (e.KeyChar == 'e')
       {
         bool valider = VerifierPeutBouger();
         coup = Deplacement.HORAIRE;
         if(peutBouger == true)
         {
           EffectuerRotationHoraire();
+          AfficherJeu();
         }
         
       }
-      AfficherJeu();
+      
     }
     //A.Roy-Lachance
     private void modifierParamètreToolStripMenuItem_Click(object sender, EventArgs e)
